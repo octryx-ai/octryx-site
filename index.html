@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Octryx AI — the layer above your coding agents</title>
+<meta name="description" content="Your developers keep Claude Code (Codex support is experimental). Octryx AI gives the whole team one process, one set of rules and one record. Open source, self-hosted.">
+<meta property="og:title" content="Octryx AI — the layer above your coding agents">
+<meta property="og:description" content="Your developers keep Claude Code (Codex support is experimental). Octryx AI gives the whole team one process, one set of rules and one record. Open source, self-hosted.">
+<link rel="icon" type="image/png" href="/assets/f43c50573d5a2c7650fc39566367477a.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0e100f}
+a{color:#E8DFC5}a:hover{color:#F3ECD6}
+.m-nav{display:none}
+.m-nav summary{list-style:none;cursor:pointer;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.12);border-radius:0.58rem}
+.m-nav summary::-webkit-details-marker{display:none}
+.m-sheet{position:absolute;left:0;right:0;top:100%;background:#0e100f;border-bottom:1px solid rgba(255,255,255,0.065);padding:4px 16px 12px;display:flex;flex-direction:column}
+.m-sheet a{color:#cbc7bc;text-decoration:none;padding:14px 4px;border-top:1px solid rgba(255,255,255,0.065);font-size:17px}
+.run-dot{position:absolute;left:-5px;width:12px;height:12px;border-radius:999px;background:#F3ECD6;box-shadow:0 0 0 4px rgba(243,236,214,0.12);animation:runDot 9s linear infinite}
+@keyframes runDot{0%{top:0%;opacity:0}4%{opacity:1}92%{top:calc(100% - 12px);opacity:1}100%{top:calc(100% - 12px);opacity:0}}
+.run-step{animation:stepOn 9s ease-in-out infinite both}
+@keyframes stepOn{0%{opacity:.38}5%{opacity:1}82%{opacity:1}92%{opacity:.38}100%{opacity:.38}}
+@media (prefers-reduced-motion: reduce){.run-dot{animation:none;top:0}.run-step{animation:none;opacity:1}}
+@media (max-width: 760px){
+.navbar{padding-left:16px !important;padding-right:16px !important;flex-wrap:nowrap !important}
+.nav-links{display:none !important}
+.m-nav{display:block}
+.h1{font-size:36px !important;letter-spacing:-0.035em !important}
+.h2{font-size:27px !important}
+.pad{padding-top:44px !important;padding-bottom:44px !important;padding-left:16px !important;padding-right:16px !important}
+.tree{display:none}
+.banner{font-size:13px !important;padding-left:16px !important;padding-right:16px !important}
+}
+</style>
+</head>
+<body>
+<div style="font-family: Inter, 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif; color: #efece4; background: #0e100f; min-height: 100vh; font-size: 16px;">
+
+<div style="background: rgba(251,191,36,0.10); border-bottom: 1px solid rgba(251,191,36,0.28); color: #F3ECD6; font-size: 14px;">
+<div class="banner" style="max-width: 1200px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; justify-content: center; text-align: center;">
+<strong style="font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 12.5px; color: #1F1C17; background: #FBBF24; padding: 3px 9px; border-radius: 999px;">Under construction</strong>
+<span style="font-family: 'IBM Plex Mono', monospace; color: #FBBF24;">v0.0.1-alpha</span>
+<span>Octryx AI is early and changing. Every feature shows its real stage; the source is on <a href="https://github.com/octryx-ai/octryx" style="color: #FBBF24;">GitHub</a> under Apache 2.0.</span>
+<a href="/roadmap/" style="color: #FBBF24;">See the roadmap</a>
+</div>
+</div>
+
+<header style="position: sticky; top: 0; z-index: 20; background: rgba(14,16,15,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.065);">
+<nav aria-label="Main" class="navbar" style="position: relative; max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px;">
+<a href="#top" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #f7f4ec;">
+<img src="/assets/f43c50573d5a2c7650fc39566367477a.png" alt="" style="width: 36px; height: 36px;">
+<span style="font-weight: 700; font-size: 20px; letter-spacing: -0.03em;">octryx</span>
+</a>
+<div style="flex: 1 1 auto;"></div>
+<div class="nav-links" style="display: flex; flex-wrap: wrap; gap: 4px 24px; align-items: center; font-size: 14px;">
+<a href="/platform/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Octryx AI</a>
+<a href="/family/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Family</a>
+<a href="/research/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Research</a>
+<a href="/benchmark/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Benchmark</a>
+<a href="/roadmap/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Roadmap</a>
+<a href="/docs/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Docs</a>
+<a href="https://github.com/octryx-ai/octryx" style="color: #1F1C17; background: #E8DFC5; text-decoration: none; padding: 11px 18px; border-radius: 0.58rem; font-weight: 600;">GitHub</a>
+</div>
+<details class="m-nav">
+<summary aria-label="Menu"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="#efece4" stroke-width="1.5"><path d="M3 6h14M3 10h14M3 14h14"></path></svg></summary>
+<div class="m-sheet">
+<a href="/platform/">Octryx AI</a>
+<a href="/family/">Family</a>
+<a href="/research/">Research</a>
+<a href="/benchmark/">Benchmark</a>
+<a href="/roadmap/">Roadmap</a>
+<a href="/docs/">Docs</a>
+<a href="https://github.com/octryx-ai">GitHub</a>
+</div>
+</details>
+</nav>
+</header>
+
+<main id="top">
+<section class="pad" style="max-width: 1200px; margin: 0 auto; padding: 56px 24px 64px; display: flex; flex-wrap: wrap; align-items: center; gap: 40px 48px;">
+<div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 20px;">
+<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #898f86;">Octryx AI · open source · self-hosted</p>
+<h1 class="h1" style="margin: 0; font-weight: 700; font-size: 56px; line-height: 1.05; letter-spacing: -0.045em; color: #f7f4ec;">The layer above your coding agents.</h1>
+<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #cbc7bc;">Your developers keep Claude Code (Codex support is experimental). Octryx AI gives the whole team one process, one set of rules and one record, from an idea in chat to a reviewed pull request.</p>
+<dl style="margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 18px;">
+<div style="display: flex; flex-direction: column; gap: 4px;"><dt style="order: 2; font-size: 13px; line-height: 1.4; color: #898f86;">ticket to reviewed pull request, no human step</dt><dd style="order: 1; margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 500; color: #f7f4ec;">69 s</dd></div>
+<div style="display: flex; flex-direction: column; gap: 4px;"><dt style="order: 2; font-size: 13px; line-height: 1.4; color: #898f86;">of six test cases done without a human</dt><dd style="order: 1; margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 500; color: #f7f4ec;">6 / 6</dd></div>
+<div style="display: flex; flex-direction: column; gap: 4px;"><dt style="order: 2; font-size: 13px; line-height: 1.4; color: #898f86;">for all six, in parallel</dt><dd style="order: 1; margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 500; color: #f7f4ec;">$1.01</dd></div>
+</dl>
+<div style="display: flex; flex-wrap: wrap; gap: 12px;">
+<a href="#how" style="background: #E8DFC5; color: #1F1C17; text-decoration: none; padding: 14px 22px; border-radius: 0.58rem; font-weight: 600;">See how it works</a>
+<a href="#features" style="border: 1px solid rgba(255,255,255,0.12); color: #efece4; text-decoration: none; padding: 13px 22px; border-radius: 0.58rem; font-weight: 500;">What works today</a>
+</div>
+</div>
+<div style="flex: 1 1 440px; min-width: 0;">
+<div style="background: #171918; border: 1px solid rgba(232,223,197,0.35); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 14px;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; align-items: baseline;"><span style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.11em; color: #F3ECD6;">THE SAME AGENT INSIDE OCTRYX · ONE MEASURED RUN</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #898f86;">demo bug OCX-1</span></div>
+<div style="position: relative; padding-left: 22px;">
+<div aria-hidden="true" style="position: absolute; left: 0; top: 4px; bottom: 4px; width: 2px; background: rgba(232,223,197,0.2);"><span class="run-dot"></span></div>
+<ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px;">
+
+<li class="run-step" style="display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: baseline; animation-delay: 0.0s;"><span style="display: block; line-height: 1.55;"><span style="display: inline-block; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 10.5px; font-weight: 500; letter-spacing: 0.06em; padding: 2px 7px; border-radius: 0.4rem; white-space: nowrap; margin-right: 8px; vertical-align: 1px; color: #F3ECD6; border: 1px solid rgba(232,223,197,0.35);">HEAD · Octryx AI</span><span style="font-size: 14.5px; line-height: 1.5; color: #efece4;">Takes the ticket and prepares the branch</span></span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #F3ECD6; white-space: nowrap;">3 s</span></li>
+
+<li class="run-step" style="display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: baseline; animation-delay: 1.2s;"><span style="display: block; line-height: 1.55;"><span style="display: inline-block; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 10.5px; font-weight: 500; letter-spacing: 0.06em; padding: 2px 7px; border-radius: 0.4rem; white-space: nowrap; margin-right: 8px; vertical-align: 1px; color: #cbc7bc; border: 1px solid rgba(255,255,255,0.18);">ARM · Claude Code</span><span style="font-size: 14.5px; line-height: 1.5; color: #efece4;">Claude Code on the developer machine writes a failing test, then the fix</span></span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #F3ECD6; white-space: nowrap;">48 s</span></li>
+
+<li class="run-step" style="display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: baseline; animation-delay: 2.4s;"><span style="display: block; line-height: 1.55;"><span style="display: inline-block; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 10.5px; font-weight: 500; letter-spacing: 0.06em; padding: 2px 7px; border-radius: 0.4rem; white-space: nowrap; margin-right: 8px; vertical-align: 1px; color: #F3ECD6; border: 1px solid rgba(232,223,197,0.35);">HEAD · Octryx AI</span><span style="font-size: 14.5px; line-height: 1.5; color: #efece4;">Pipeline proves the test fails on the old code and passes on the new</span></span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #F3ECD6; white-space: nowrap;">2 s</span></li>
+
+<li class="run-step" style="display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: baseline; animation-delay: 3.6s;"><span style="display: block; line-height: 1.55;"><span style="display: inline-block; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 10.5px; font-weight: 500; letter-spacing: 0.06em; padding: 2px 7px; border-radius: 0.4rem; white-space: nowrap; margin-right: 8px; vertical-align: 1px; color: #F3ECD6; border: 1px solid rgba(232,223,197,0.35);">HEAD · Octryx AI</span><span style="font-size: 14.5px; line-height: 1.5; color: #efece4;">A separate model reviews what the server read itself: passed, no findings</span></span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #F3ECD6; white-space: nowrap;">19 s</span></li>
+
+<li class="run-step" style="display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: baseline; animation-delay: 4.8s;"><span style="display: block; line-height: 1.55;"><span style="display: inline-block; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 10.5px; font-weight: 500; letter-spacing: 0.06em; padding: 2px 7px; border-radius: 0.4rem; white-space: nowrap; margin-right: 8px; vertical-align: 1px; color: #F3ECD6; border: 1px solid rgba(232,223,197,0.35);">HEAD · Octryx AI</span><span style="font-size: 14.5px; line-height: 1.5; color: #efece4;">Opens the pull request and keeps the record: phases, evidence, tokens, cost</span></span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #F3ECD6; white-space: nowrap;">1:09</span></li>
+
+<li class="run-step" style="display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: baseline; animation-delay: 6.0s;"><span style="display: block; line-height: 1.55;"><span style="display: inline-block; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 10.5px; font-weight: 500; letter-spacing: 0.06em; padding: 2px 7px; border-radius: 0.4rem; white-space: nowrap; margin-right: 8px; vertical-align: 1px; color: #F3ECD6; border: 1px solid rgba(232,223,197,0.35);">HEAD · Octryx AI</span><span style="font-size: 14.5px; line-height: 1.5; color: #efece4;">The review bot comments on the pull request</span></span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #F3ECD6; white-space: nowrap;">+23 s</span></li>
+
+</ol>
+</div>
+<span style="font-size: 13.5px; line-height: 1.5; color: #898f86; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 12px;">Start to pull request 1:09 min, with no human step. From <code>make up</code> to the bot's review 2:57 min. One measured cold run on one Mac; numbers vary with the machine and the model.</span>
+</div>
+</div>
+</section>
+
+<section id="how" aria-label="How Octryx AI sits above your agents" style="border-top: 1px solid rgba(255,255,255,0.065);">
+<div class="pad" style="max-width: 1200px; margin: 0 auto; padding: 80px 24px;">
+<div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; max-width: 760px; margin: 0 auto 28px;">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: #898f86;">HOW IT WORKS</span>
+<h2 class="h2" style="margin: 0; font-size: 36px; font-weight: 700; letter-spacing: -0.03em; color: #f7f4ec;">Claude Code is an arm. Octryx AI is the head.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #cbc7bc;">The coding agent does the work on a developer’s machine. Octryx AI decides the steps, checks the result, keeps the knowledge and writes down what happened.</p>
+</div>
+
+<div style="display: flex; flex-direction: column; align-items: center; gap: 0;">
+<div style="width: 100%; box-sizing: border-box; max-width: 860px; background: #171918; border: 1px solid rgba(232,223,197,0.35); border-radius: 0.95rem; padding: 22px 24px; display: flex; flex-direction: column; gap: 14px;">
+<div style="display: flex; align-items: center; gap: 12px;"><img src="/assets/f43c50573d5a2c7650fc39566367477a.png" alt="" style="width: 32px; height: 32px;"><strong style="font-size: 18px; color: #f7f4ec;">Octryx AI — the head</strong></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px;">
+<div style="background: rgba(216,200,154,0.08); border-radius: 0.58rem; padding: 12px 14px;"><strong style="display: block; color: #F3ECD6; font-size: 15px;">Process</strong><span style="font-size: 13.5px; color: #cbc7bc;">Phases your team defines</span></div>
+<div style="background: rgba(216,200,154,0.08); border-radius: 0.58rem; padding: 12px 14px;"><strong style="display: block; color: #F3ECD6; font-size: 15px;">Rules</strong><span style="font-size: 13.5px; color: #cbc7bc;">Policies, approvals, model choice</span></div>
+<div style="background: rgba(216,200,154,0.08); border-radius: 0.58rem; padding: 12px 14px;"><strong style="display: block; color: #F3ECD6; font-size: 15px;">Knowledge</strong><span style="font-size: 13.5px; color: #cbc7bc;">Shared search with sources</span></div>
+<div style="background: rgba(216,200,154,0.08); border-radius: 0.58rem; padding: 12px 14px;"><strong style="display: block; color: #F3ECD6; font-size: 15px;">Record</strong><span style="font-size: 13.5px; color: #cbc7bc;">Who asked, which agent, which model</span></div>
+</div>
+</div>
+<svg class="tree" width="860" height="56" viewBox="0 0 860 56" style="max-width: 100%;" aria-hidden="true" fill="none" stroke="rgba(232,223,197,0.35)" stroke-width="2"><path d="M430 0V20M110 20H750M110 20V56M323 20V56M537 20V56M750 20V56"></path></svg>
+<div style="width: 100%; max-width: 1000px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+
+<div style="background: #141715; border: 1px solid rgba(255,255,255,0.065); border-radius: 0.78rem; padding: 16px; display: flex; flex-direction: column; gap: 8px;">
+<strong style="color: #f7f4ec; font-size: 15px;">Claude Code on developer machines</strong>
+<span style="font-size: 13.5px; line-height: 1.5; color: #cbc7bc;">Runs through octryx-claude with the developer’s own subscription or a company model. The machine checks every job against its own allowed folders and deny list.</span>
+<span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span>
+</div>
+
+<div style="background: #141715; border: 1px solid rgba(255,255,255,0.065); border-radius: 0.78rem; padding: 16px; display: flex; flex-direction: column; gap: 8px;">
+<strong style="color: #f7f4ec; font-size: 15px;">Company models through your gateway</strong>
+<span style="font-size: 13.5px; line-height: 1.5; color: #cbc7bc;">Anthropic, any OpenAI-compatible endpoint, Ollama, llama.cpp, OpenRouter or LiteLLM. Each model is cleared up to a data class.</span>
+<span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span>
+</div>
+
+<div style="background: #141715; border: 1px solid rgba(255,255,255,0.065); border-radius: 0.78rem; padding: 16px; display: flex; flex-direction: column; gap: 8px;">
+<strong style="color: #f7f4ec; font-size: 15px;">Git, tickets and docs</strong>
+<span style="font-size: 13.5px; line-height: 1.5; color: #cbc7bc;">Bitbucket, GitHub, Jira and Confluence in real runs; ServiceNow built. GitLab tried with the review bot on a self-hosted instance, webhook included.</span>
+<span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span>
+</div>
+
+<div style="background: #141715; border: 1px solid rgba(255,255,255,0.065); border-radius: 0.78rem; padding: 16px; display: flex; flex-direction: column; gap: 8px;">
+<strong style="color: #f7f4ec; font-size: 15px;">Codex on developer machines</strong>
+<span style="font-size: 13.5px; line-height: 1.5; color: #cbc7bc;">A second coding engine through the platform, with the person’s own ChatGPT login or a company model through your gateway. Chosen per platform, workspace or person. Experimental: tried on a local installation; no run with Codex has gone through to a pull request yet.</span>
+<span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span>
+</div>
+
+</div>
+</div>
+<div style="margin-top: 40px; display: flex; flex-direction: column; gap: 16px;">
+<div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; max-width: 760px; margin: 0 auto;">
+<h3 style="margin: 0; font-size: 26px; font-weight: 700; letter-spacing: -0.02em; color: #f7f4ec;">Rules in one place, not in markdown files.</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #cbc7bc;">This is the main difference to a coding agent on its own.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 16px; align-items: stretch;">
+<div style="background: #171918; border: 1px solid rgba(255,255,255,0.05); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px;">
+<span style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.11em; color: #898f86;">A CODING AGENT ON ITS OWN</span>
+<ul style="margin: 0; padding-left: 18px; font-size: 14.5px; line-height: 1.6; color: #cbc7bc; display: flex; flex-direction: column; gap: 6px;">
+<li>Rules live in markdown files in each repository (<code style="font-family: 'IBM Plex Mono', monospace; font-size: 13px;">CLAUDE.md</code>, <code style="font-family: 'IBM Plex Mono', monospace; font-size: 13px;">AGENTS.md</code>) or on one person’s machine.</li>
+<li>Every repository keeps its own copy, and the copies drift apart.</li>
+<li>Nobody sees who changed a rule, or which version an agent used.</li>
+</ul>
+</div>
+<div style="background: #171918; border: 1px solid rgba(232,223,197,0.35); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px;">
+<span style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.11em; color: #F3ECD6;">WITH OCTRYX AI</span>
+<ul style="margin: 0; padding-left: 18px; font-size: 14.5px; line-height: 1.6; color: #efece4; display: flex; flex-direction: column; gap: 6px;">
+<li>Code style, team rules and agent instructions live in the platform: set once for the installation, a Workspace or a repository.</li>
+<li>Versioned and audited; a change is visible, and a run records which version it used.</li>
+<li>Every agent gets them at the start of a run, on any developer’s machine.</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 4px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Team rules: In real runs</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Code style per level: Built</span></div>
+</div>
+</div>
+<p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #898f86; text-align: center;">A <code style="font-family: 'IBM Plex Mono', monospace;">CLAUDE.md</code> in a repository is still read by Claude Code; the platform’s rules come on top of it.</p>
+</div>
+</div>
+</section>
+
+<section aria-label="Product screenshots" style="border-top: 1px solid rgba(255,255,255,0.065); background: #141715;">
+<div class="pad" style="max-width: 1200px; margin: 0 auto; padding: 72px 24px; display: flex; flex-direction: column; gap: 24px;">
+<div style="display: flex; flex-direction: column; gap: 10px; max-width: 760px;">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: #898f86;">THE PRODUCT</span>
+<h2 class="h2" style="margin: 0; font-size: 36px; font-weight: 700; letter-spacing: -0.03em; color: #f7f4ec;">See it as it is today.</h2>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #cbc7bc;">Real screens from a local demo instance with sample data: the “Demo Shop” workspace, seeded runs and scripted model replies. The interface is the product; the data is not from a customer. Each screen carries the status of the feature it shows.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 28px 20px; align-items: start;">
+
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px; min-width: 0;">
+<a href="/assets/7a8bda624afd39ff432f7a5dbaabbdc7.png" target="_blank" rel="noopener" aria-label="Chat with sources: open the full image" style="display: block; border: 1px solid rgba(255,255,255,0.08); border-radius: 0.78rem; background: #0e100f; overflow: hidden; aspect-ratio: 16 / 10;"><img src="/assets/7a8bda624afd39ff432f7a5dbaabbdc7.png" alt="Octryx AI chat: the assistant uses Knowledge Search and Knowledge Read, then answers a question about ticket OCX-23 with links to the checkout architecture document" width="1600" height="849" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: contain; object-position: center;"></a>
+<figcaption style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: 14px; line-height: 1.55; color: #cbc7bc;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span><span><strong style="color: #f7f4ec; font-weight: 600;">Chat with sources.</strong> An agent searches the workspace knowledge, reads the right document and answers with a citation on every point.</span></figcaption>
+</figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px; min-width: 0;">
+<a href="/assets/3434fc5707b12ffe688640c752062e58.png" target="_blank" rel="noopener" aria-label="Review round: open the full image" style="display: block; border: 1px solid rgba(255,255,255,0.08); border-radius: 0.78rem; background: #0e100f; overflow: hidden; aspect-ratio: 16 / 10;"><img src="/assets/3434fc5707b12ffe688640c752062e58.png" alt="Octryx AI workflow run for OCX-23 waiting for confirmation: review says changes needed, with a high and a medium finding pointing to file and line" width="1600" height="754" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: contain; object-position: center;"></a>
+<figcaption style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: 14px; line-height: 1.55; color: #cbc7bc;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span><span><strong style="color: #f7f4ec; font-weight: 600;">Review round.</strong> A second model reviews the change. Each finding has a severity, a file and a line; a person answers or lets the agent fix them.</span></figcaption>
+</figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px; min-width: 0;">
+<a href="/assets/772f84b89ca9d6bb2d766d8891cc94e1.png" target="_blank" rel="noopener" aria-label="Workflow designer: open the full image" style="display: block; border: 1px solid rgba(255,255,255,0.08); border-radius: 0.78rem; background: #0e100f; overflow: hidden; aspect-ratio: 16 / 10;"><img src="/assets/772f84b89ca9d6bb2d766d8891cc94e1.png" alt="Octryx AI workflow designer showing the published Ticket delivery workflow as a vertical chain of phases from Start to Done" width="1600" height="1040" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: contain; object-position: center;"></a>
+<figcaption style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: 14px; line-height: 1.55; color: #cbc7bc;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span><span><strong style="color: #f7f4ec; font-weight: 600;">Workflow designer.</strong> A workflow as phases on a canvas; here the ticket delivery workflow. Only values the validator accepts are offered.</span></figcaption>
+</figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px; min-width: 0;">
+<a href="/assets/87af030193649a675596a3e6f5de3937.png" target="_blank" rel="noopener" aria-label="Data classes: open the full image" style="display: block; border: 1px solid rgba(255,255,255,0.08); border-radius: 0.78rem; background: #0e100f; overflow: hidden; aspect-ratio: 16 / 10;"><img src="/assets/87af030193649a675596a3e6f5de3937.png" alt="Octryx AI classification rules: a matrix of five data levels from Public to Secret against models, coding tools, knowledge and connectors, enforcement in shadow mode" width="1600" height="971" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: contain; object-position: center;"></a>
+<figcaption style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: 14px; line-height: 1.55; color: #cbc7bc;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span><span><strong style="color: #f7f4ec; font-weight: 600;">Data classes.</strong> What each classification level allows: models, Claude Code seats, device runs, knowledge, connectors. Shown here in shadow mode.</span></figcaption>
+</figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px; min-width: 0; grid-column: 1 / -1;">
+<a href="/assets/4cd5c7ac923da32b21a2996e5db9b6c9.png" target="_blank" rel="noopener" aria-label="Event trail: open the full image" style="display: block; border: 1px solid rgba(255,255,255,0.08); border-radius: 0.78rem; background: #0e100f; overflow: hidden;"><img src="/assets/4cd5c7ac923da32b21a2996e5db9b6c9.png" alt="Octryx AI run timeline listing eight timestamped steps of a run, from start through two review rounds" width="1600" height="374" loading="lazy" style="display: block; width: 100%; height: auto;"></a>
+<figcaption style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: 14px; line-height: 1.55; color: #cbc7bc;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span><span><strong style="color: #f7f4ec; font-weight: 600;">Event trail.</strong> Every step of a run with its time: questions, implementation, review rounds, automatic revisions.</span></figcaption>
+</figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px; min-width: 0; grid-column: 1 / -1;">
+<a href="/assets/f1e19078d26eec088182a28879c7d2bc.png" target="_blank" rel="noopener" aria-label="Runs: open the full image" style="display: block; border: 1px solid rgba(255,255,255,0.08); border-radius: 0.78rem; background: #0e100f; overflow: hidden;"><img src="/assets/f1e19078d26eec088182a28879c7d2bc.png" alt="Octryx AI runs list: one run needs a decision, one is implementing, one has shipped a pull request" width="1600" height="427" loading="lazy" style="display: block; width: 100%; height: auto;"></a>
+<figcaption style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: 14px; line-height: 1.55; color: #cbc7bc;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span><span><strong style="color: #f7f4ec; font-weight: 600;">Runs.</strong> What waits for you, and every run with its step and result.</span></figcaption>
+</figure>
+
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px 40px; padding-top: 12px;">
+<img src="/assets/793dc6d608db0457669a98996517f895.png" width="554" height="1200" alt="Octryx mobile web app: one run waiting for a decision and the five latest chats of the Demo Shop workspace" loading="lazy" style="display: block; width: 240px; max-width: 70%; height: auto; border: 1px solid rgba(255,255,255,0.08); border-radius: 1.4rem; background: #0e100f;">
+<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 10px;">
+<span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span>
+<strong style="font-size: 20px; color: #f7f4ec;">On the phone, too.</strong>
+<span style="font-size: 15px; line-height: 1.6; color: #cbc7bc;">The phone web app shows which runs wait for you, your open tasks and your recent chats. You decide approvals there too. Paired by QR code, with push notifications.</span>
+</div>
+</div>
+</div>
+</section>
+
+<section id="why" style="border-top: 1px solid rgba(255,255,255,0.065);">
+<div class="pad" style="max-width: 1200px; margin: 0 auto; padding: 80px 24px; display: flex; flex-direction: column; gap: 28px;">
+<div style="display: flex; flex-direction: column; gap: 10px; max-width: 760px;">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: #898f86;">WHY OCTRYX AI</span>
+<h2 class="h2" style="margin: 0; font-size: 36px; font-weight: 700; letter-spacing: -0.03em; color: #f7f4ec;">Proof, not promises.</h2>
+</div>
+<ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px;">
+
+<li style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px; display: flex; flex-direction: column; gap: 8px;">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">01</span>
+<strong style="font-size: 17px; color: #f7f4ec;">Tested before it is offered</strong>
+<span style="font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">The pipeline runs the tests your repository declares, on the server or the developer’s machine, and keeps per-test results and screenshots for the reviewer.</span>
+<span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span>
+</li>
+
+<li style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px; display: flex; flex-direction: column; gap: 8px;">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">02</span>
+<strong style="font-size: 17px; color: #f7f4ec;">Independent review</strong>
+<span style="font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">A separate model in its own session, with no access to the author’s session, reviews only what the server read itself: the diff, confirmed tests and screenshots.</span>
+<span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span>
+</li>
+
+<li style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px; display: flex; flex-direction: column; gap: 8px;">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">03</span>
+<strong style="font-size: 17px; color: #f7f4ec;">Ask once, then work</strong>
+<span style="font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">One question round for the whole epic, then stories in Jira in build order. The coding agent builds them; the platform adds branch, pipeline, review and pull requests. People merge — Octryx AI never does.</span>
+<span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span>
+</li>
+
+<li style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px; display: flex; flex-direction: column; gap: 8px;">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">04</span>
+<strong style="font-size: 17px; color: #f7f4ec;">Your models, your infrastructure</strong>
+<span style="font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Developer machines with their own subscription, or company models through your gateway. Self-hosted, Apache 2.0.</span>
+<span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span>
+</li>
+
+<li style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px; display: flex; flex-direction: column; gap: 8px;">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">05</span>
+<strong style="font-size: 17px; color: #f7f4ec;">A record of every run</strong>
+<span style="font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Each AI commit names its model and run; every run has a full event trail and its token usage.</span>
+<span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span>
+</li>
+
+</ol>
+<div style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 18px 20px; display: flex; flex-direction: column; gap: 6px;">
+<strong style="color: #f7f4ec;">Where Claude Code alone is better today</strong>
+<span style="font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">For one developer on one quick task it needs no setup, and in our own tests it produced the nicer UI. Octryx AI adds tests, an independent review, a pull request and a record. On Flutter, the build and the browser test take most of the time. A comparison in tokens against Claude Code on its own is being measured. <a href="/benchmark/#results">Results</a>. Claude Code is a mature product; Octryx AI is an alpha. Use Octryx AI when a team needs a shared process, independent review and a record — not to go faster alone.</span>
+</div>
+</div>
+</section>
+
+<section id="features" style="border-top: 1px solid rgba(255,255,255,0.065);">
+<div class="pad" style="max-width: 1200px; margin: 0 auto; padding: 80px 24px; display: flex; flex-direction: column; gap: 28px;">
+<div style="display: flex; flex-direction: column; gap: 10px; max-width: 760px;">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: #898f86;">WHAT'S INSIDE</span>
+<h2 class="h2" style="margin: 0; font-size: 36px; font-weight: 700; letter-spacing: -0.03em; color: #f7f4ec;">Every feature, with its honest status.</h2>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px; padding-top: 6px;">
+<span style="font-size: 13.5px; color: #898f86;">Four stages. The bars in each label show how far a feature has come. Below: all 51 features listed on this page, by stage.</span>
+<div role="img" aria-label="2 Planned, 3 Building, 27 Built, 19 In real runs" style="display: flex; gap: 3px; height: 12px; border-radius: 999px; overflow: hidden;">
+
+<span style="flex: 2 1 0; background: #A3AAB5;"></span>
+
+<span style="flex: 3 1 0; background: #FBBF24;"></span>
+
+<span style="flex: 27 1 0; background: #6DA9D8;"></span>
+
+<span style="flex: 19 1 0; background: #79B88E;"></span>
+
+</div>
+<ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 10px;">
+
+<li style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.04em; color: #898f86;">Stage 1 of 4</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(127,135,149,0.55); color: #A3AAB5; padding-left: 30px; background-image: linear-gradient(#A3AAB5, #A3AAB5), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Planned</span><span style="font-size: 26px; font-weight: 700; letter-spacing: -0.02em; color: #f7f4ec;">2 features</span><span style="font-size: 13.5px; line-height: 1.5; color: #cbc7bc;">Decided, not built yet.</span></li>
+
+<li style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.04em; color: #898f86;">Stage 2 of 4</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(251,191,36,0.45); color: #FBBF24; padding-left: 30px; background-image: linear-gradient(#FBBF24, #FBBF24), linear-gradient(#FBBF24, #FBBF24), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Building</span><span style="font-size: 26px; font-weight: 700; letter-spacing: -0.02em; color: #f7f4ec;">3 features</span><span style="font-size: 13.5px; line-height: 1.5; color: #cbc7bc;">Partly there; being built now.</span></li>
+
+<li style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.04em; color: #898f86;">Stage 3 of 4</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span><span style="font-size: 26px; font-weight: 700; letter-spacing: -0.02em; color: #f7f4ec;">27 features</span><span style="font-size: 13.5px; line-height: 1.5; color: #cbc7bc;">Code and tests exist and it works locally. No real run yet.</span></li>
+
+<li style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.04em; color: #898f86;">Stage 4 of 4</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span><span style="font-size: 26px; font-weight: 700; letter-spacing: -0.02em; color: #f7f4ec;">19 features</span><span style="font-size: 13.5px; line-height: 1.5; color: #cbc7bc;">Used end to end in real workflow runs.</span></li>
+
+</ol>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 16px; align-items: start;">
+
+<details style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 6px 22px;"><summary style="cursor: pointer; list-style: none; display: flex; flex-direction: column; gap: 10px; padding: 12px 0; min-height: 44px;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 12px;"><h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.015em; color: #f7f4ec;">Delivery workflow</h3><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #898f86;">5 of 9 in real runs</span></div>
+<div aria-hidden="true" style="display: flex; gap: 2px; height: 6px; border-radius: 999px; overflow: hidden;">
+
+<span style="flex: 4 1 0; background: #6DA9D8;"></span>
+
+<span style="flex: 5 1 0; background: #79B88E;"></span>
+
+</div>
+<span style="font-size: 13px; color: #E8DFC5;">Show the features</span></summary><div style="padding: 4px 0 16px;"><ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px;">
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Ticket to pull request in phases: spec, tests first, build, review, CI</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Epic, story, task — one branch and one PR per story</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Review rounds with findings by severity, file and line</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Runs on developer machines via octryx-claude</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Hand a session to a colleague, after they confirm</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Codex as a second coding engine (experimental)</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Auto-accept after a clean review: the product owner is asked once</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Pull request review bot: first comment within seconds; informs by default, gate on request</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Corrections become checks, approved by a second person</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+</ul>
+</div></details>
+
+<details style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 6px 22px;"><summary style="cursor: pointer; list-style: none; display: flex; flex-direction: column; gap: 10px; padding: 12px 0; min-height: 44px;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 12px;"><h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.015em; color: #f7f4ec;">Chat and work</h3><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #898f86;">3 of 6 in real runs</span></div>
+<div aria-hidden="true" style="display: flex; gap: 2px; height: 6px; border-radius: 999px; overflow: hidden;">
+
+<span style="flex: 1 1 0; background: #FBBF24;"></span>
+
+<span style="flex: 2 1 0; background: #6DA9D8;"></span>
+
+<span style="flex: 3 1 0; background: #79B88E;"></span>
+
+</div>
+<span style="font-size: 13px; color: #E8DFC5;">Show the features</span></summary><div style="padding: 4px 0 16px;"><ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px;">
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Web chat with threads, approvals, trace and diffs</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Approvals on desktop and phone</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Phone web app with QR pairing and push</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Previews of HTML and Office files</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Schedules, webhooks and Jira or ServiceNow change polling</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Starting workflows from Bitbucket and Confluence events</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(251,191,36,0.45); color: #FBBF24; padding-left: 30px; background-image: linear-gradient(#FBBF24, #FBBF24), linear-gradient(#FBBF24, #FBBF24), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Building</span></li>
+
+</ul>
+</div></details>
+
+<details style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 6px 22px;"><summary style="cursor: pointer; list-style: none; display: flex; flex-direction: column; gap: 10px; padding: 12px 0; min-height: 44px;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 12px;"><h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.015em; color: #f7f4ec;">Knowledge</h3><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #898f86;">4 of 6 in real runs</span></div>
+<div aria-hidden="true" style="display: flex; gap: 2px; height: 6px; border-radius: 999px; overflow: hidden;">
+
+<span style="flex: 1 1 0; background: #A3AAB5;"></span>
+
+<span style="flex: 1 1 0; background: #6DA9D8;"></span>
+
+<span style="flex: 4 1 0; background: #79B88E;"></span>
+
+</div>
+<span style="font-size: 13px; color: #E8DFC5;">Show the features</span></summary><div style="padding: 4px 0 16px;"><ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px;">
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Search used by agents in real runs</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Hybrid lexical and vector search, optional reranking</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Answers with citations</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Knowledge graph per workspace, with citations</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Source permissions for Confluence, Jira and ServiceNow (opt-in)</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Evaluation with golden question sets in the UI</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(127,135,149,0.55); color: #A3AAB5; padding-left: 30px; background-image: linear-gradient(#A3AAB5, #A3AAB5), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Planned</span></li>
+
+</ul>
+</div></details>
+
+<details style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 6px 22px;"><summary style="cursor: pointer; list-style: none; display: flex; flex-direction: column; gap: 10px; padding: 12px 0; min-height: 44px;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 12px;"><h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.015em; color: #f7f4ec;">Agents and tools</h3><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #898f86;">1 of 6 in real runs</span></div>
+<div aria-hidden="true" style="display: flex; gap: 2px; height: 6px; border-radius: 999px; overflow: hidden;">
+
+<span style="flex: 1 1 0; background: #FBBF24;"></span>
+
+<span style="flex: 4 1 0; background: #6DA9D8;"></span>
+
+<span style="flex: 1 1 0; background: #79B88E;"></span>
+
+</div>
+<span style="font-size: 13px; color: #E8DFC5;">Show the features</span></summary><div style="padding: 4px 0 16px;"><ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px;">
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Skill catalog with import and usage</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>MCP server for Claude Code and other MCP clients</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Visual workflow designer, validated and audited publishing</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Sub-agents and coordinator mode</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Sandbox container and own browser per run</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Visual agent designer</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(251,191,36,0.45); color: #FBBF24; padding-left: 30px; background-image: linear-gradient(#FBBF24, #FBBF24), linear-gradient(#FBBF24, #FBBF24), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Building</span></li>
+
+</ul>
+</div></details>
+
+<details style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 6px 22px;"><summary style="cursor: pointer; list-style: none; display: flex; flex-direction: column; gap: 10px; padding: 12px 0; min-height: 44px;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 12px;"><h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.015em; color: #f7f4ec;">Rules and record</h3><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #898f86;">3 of 8 in real runs</span></div>
+<div aria-hidden="true" style="display: flex; gap: 2px; height: 6px; border-radius: 999px; overflow: hidden;">
+
+<span style="flex: 5 1 0; background: #6DA9D8;"></span>
+
+<span style="flex: 3 1 0; background: #79B88E;"></span>
+
+</div>
+<span style="font-size: 13px; color: #E8DFC5;">Show the features</span></summary><div style="padding: 4px 0 16px;"><ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px;">
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Event trail per run</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Audit log and policy decision log</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Cedar policies (shadow first), builder, test bench and four-eyes</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Content routing to cleared models (shadow first)</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Data classes, redaction, egress and command safety</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Secrets redacted before output leaves a developer machine</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Emergency stop per workspace, runs paused not killed</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Prompt-injection fences on knowledge and connector content</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+</ul>
+</div></details>
+
+<details style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 6px 22px;"><summary style="cursor: pointer; list-style: none; display: flex; flex-direction: column; gap: 10px; padding: 12px 0; min-height: 44px;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 12px;"><h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.015em; color: #f7f4ec;">Memory and monitoring</h3><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #898f86;">1 of 6 in real runs</span></div>
+<div aria-hidden="true" style="display: flex; gap: 2px; height: 6px; border-radius: 999px; overflow: hidden;">
+
+<span style="flex: 5 1 0; background: #6DA9D8;"></span>
+
+<span style="flex: 1 1 0; background: #79B88E;"></span>
+
+</div>
+<span style="font-size: 13px; color: #E8DFC5;">Show the features</span></summary><div style="padding: 4px 0 16px;"><ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px;">
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Automatic capture, confirmed by a person (off by default)</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Remember and recall, personal and team memory</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Confirm, correct, forget — forgetting really deletes</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Live operations view: every run, machine job and seat</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Problems list and loop detection</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Prometheus metrics and Grafana dashboard</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+</ul>
+</div></details>
+
+<details style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 6px 22px;"><summary style="cursor: pointer; list-style: none; display: flex; flex-direction: column; gap: 10px; padding: 12px 0; min-height: 44px;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 12px;"><h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.015em; color: #f7f4ec;">Platform</h3><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #898f86;">2 of 10 in real runs</span></div>
+<div aria-hidden="true" style="display: flex; gap: 2px; height: 6px; border-radius: 999px; overflow: hidden;">
+
+<span style="flex: 1 1 0; background: #A3AAB5;"></span>
+
+<span style="flex: 1 1 0; background: #FBBF24;"></span>
+
+<span style="flex: 6 1 0; background: #6DA9D8;"></span>
+
+<span style="flex: 2 1 0; background: #79B88E;"></span>
+
+</div>
+<span style="font-size: 13px; color: #E8DFC5;">Show the features</span></summary><div style="padding: 4px 0 16px;"><ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px;">
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Deployed and running on Kubernetes</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Single sign-on with OIDC and group mapping</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Docker Compose on a single machine</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Launcher with its own pinned tools, nothing installed system-wide</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Budgets per workspace and session</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>~36 connectors, several read-only</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Custom REST connector without code, including OData</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Cost view, including cost per delivered pull request</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>Install package for any Kubernetes</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(251,191,36,0.45); color: #FBBF24; padding-left: 30px; background-image: linear-gradient(#FBBF24, #FBBF24), linear-gradient(#FBBF24, #FBBF24), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Building</span></li>
+
+<li style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; color: #cbc7bc;"><span>SAML and SCIM</span><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(127,135,149,0.55); color: #A3AAB5; padding-left: 30px; background-image: linear-gradient(#A3AAB5, #A3AAB5), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Planned</span></li>
+
+</ul>
+</div></details>
+
+</div>
+<details style="background: #141715; border: 1px solid rgba(255,255,255,0.06); border-radius: 0.78rem; padding: 4px 22px;">
+<summary style="cursor: pointer; min-height: 44px; display: flex; align-items: center; font-size: 15px; font-weight: 600; color: #E8DFC5;">Words we use</summary>
+<dl style="margin: 0 0 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 12px 24px; font-size: 14px; line-height: 1.55;">
+<div><dt style="font-weight: 600; color: #f7f4ec;">Workspace</dt><dd style="margin: 0; color: #cbc7bc;">One team’s space: its own rules, knowledge, models and costs.</dd></div>
+<div><dt style="font-weight: 600; color: #f7f4ec;">Run</dt><dd style="margin: 0; color: #cbc7bc;">One piece of work from start to pull request, step by step, with a full record.</dd></div>
+<div><dt style="font-weight: 600; color: #f7f4ec;">Seat</dt><dd style="margin: 0; color: #cbc7bc;">A person’s own Claude or ChatGPT subscription, used through Octryx AI.</dd></div>
+<div><dt style="font-weight: 600; color: #f7f4ec;">Device job</dt><dd style="margin: 0; color: #cbc7bc;">Work that runs on a developer’s machine instead of the server.</dd></div>
+<div><dt style="font-weight: 600; color: #f7f4ec;">Data class</dt><dd style="margin: 0; color: #cbc7bc;">How sensitive data is, from Public to Secret; it decides which models may see it.</dd></div>
+<div><dt style="font-weight: 600; color: #f7f4ec;">Shadow mode</dt><dd style="margin: 0; color: #cbc7bc;">A rule is checked and logged, but does not block yet.</dd></div>
+</dl>
+</details>
+</div>
+</section>
+
+<section id="community" aria-label="Why open source" style="border-top: 1px solid rgba(255,255,255,0.065);">
+<div class="pad" style="max-width: 1200px; margin: 0 auto; padding: 80px 24px; display: flex; flex-direction: column; gap: 28px;">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 800px;">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: #898f86;">WHY OPEN SOURCE</span>
+<h2 class="h2" style="margin: 0; font-size: 36px; font-weight: 700; letter-spacing: -0.03em; color: #f7f4ec;">Built in the open, for the whole team.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #cbc7bc;">One person can’t cover everything or work on many solutions at the same time. A community can. People bring in their own ideas, start new experiments and explore new paths, and that is how a product becomes what it should be. That is why Octryx AI is open source, under Apache 2.0.</p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #898f86;">Honest status: the repository has just gone public. There is no community yet. This is the invitation.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.015em; color: #f7f4ec;">Time is the most valuable resource.</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">AI should not be only for people who write code. Our time is worth more than anything we can buy, and that is the measure we hold Octryx AI to.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 4px;">
+
+</div>
+</article>
+
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.015em; color: #f7f4ec;">What one knows, the team knows.</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Today a team’s knowledge is spread over single people: A knows x, B knows y, nobody knows xy. With Octryx AI, something researched once is available to everyone in the team, with its source.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 4px;">
+
+<span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Knowledge search: In real runs</span>
+
+<span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Team memory: Built</span>
+
+</div>
+</article>
+
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.015em; color: #f7f4ec;">Your infrastructure, your rules.</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Self-hosted: your models, your code style, your workflow. Extend it with plugins instead of waiting for an official release.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 4px;">
+
+<span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Self-hosted: In real runs</span>
+
+<span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Plugins: Built</span>
+
+</div>
+</article>
+
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.015em; color: #f7f4ec;">Trust you can check.</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Trust grows from evidence: a test that fails before and passes after, an independent review, four-eyes approvals and a record of every run. With that trust, a team can hand over more and keep more of its time.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 4px;">
+
+<span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span>
+
+</div>
+</article>
+
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px; padding-top: 8px;">
+<div style="display: flex; flex-direction: column; gap: 8px; max-width: 800px;">
+<h3 style="margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.02em; color: #f7f4ec;">Not only for coders.</h3>
+<p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: #cbc7bc;">Octryx AI is meant for everyone whose work depends on the team’s knowledge and decisions. It can’t support every role. The goal is to help wherever it can, and to say honestly how far each role is today.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0; background: #141715;">
+<span style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.11em; color: #898f86;">DEVELOPERS</span>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">From ticket to reviewed pull request, with Claude Code on their own machine (Codex support is experimental).</p>
+<span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span>
+</article>
+
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0; background: #141715;">
+<span style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.11em; color: #898f86;">PRODUCT OWNERS AND PROJECT LEADS</span>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Ideas in chat, one round of questions, decisions and approvals on desktop or phone, without an IDE.</p>
+<span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span>
+</article>
+
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0; background: #141715;">
+<span style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.11em; color: #898f86;">OPERATORS ON NIGHT DUTY</span>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Error analysis that starts from an alert and ends in a proposed fix, for a person to approve.</p>
+<span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(127,135,149,0.55); color: #A3AAB5; padding-left: 30px; background-image: linear-gradient(#A3AAB5, #A3AAB5), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Planned</span>
+</article>
+
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 20px;">
+<span style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 6px;"><span style="font-size: 17px; line-height: 1.5; color: #f7f4ec;">If Octryx AI gives people their time back, it has reached its goal.</span><span style="font-size: 13.5px; line-height: 1.5; color: #898f86;">Found a bug? Open a <a href="https://github.com/octryx-ai/octryx/issues" style="color: #E8DFC5;">GitHub Issue</a>. A security problem? <a href="https://github.com/octryx-ai/octryx/security/advisories/new" style="color: #E8DFC5;">Report it privately</a>.</span></span>
+<a href="https://github.com/octryx-ai/octryx" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 0.58rem; border: 1px solid rgba(232,223,197,0.35); color: #F3ECD6; text-decoration: none; font-weight: 600; font-size: 15px;">Octryx AI on GitHub</a>
+</div>
+</div>
+</section>
+
+<section id="story" aria-label="The story" style="border-top: 1px solid rgba(255,255,255,0.065);">
+<div class="pad" style="max-width: 1200px; margin: 0 auto; padding: 80px 24px; display: flex; flex-wrap: wrap; gap: 40px 56px; align-items: flex-start;">
+<aside style="flex: 1 1 280px; max-width: 360px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+<img src="/assets/f43c50573d5a2c7650fc39566367477a.png" alt="The Octryx octopus" style="width: 180px; height: 180px;">
+<div style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px;">
+<strong style="font-size: 15px; color: #F3ECD6;">About the octopus</strong>
+<span style="font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">It didn't start with orchestration. It started with food: the colours of my own kitchen and a recipe, polpo alla griglia. That octopuses turn out to be clever animals whose arms work on their own was a happy coincidence.</span>
+</div>
+</aside>
+<div style="flex: 1 1 520px; min-width: 0; max-width: 720px; display: flex; flex-direction: column; gap: 18px;">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: #898f86;">THE STORY</span>
+<h2 class="h2" style="margin: 0; font-size: 36px; font-weight: 700; letter-spacing: -0.03em; color: #f7f4ec;">Not another agent. A team around the agents.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.7; color: #cbc7bc;">Octryx AI started with the first coding CLIs. The potential was obvious, and so was the fact that they weren't there yet. So I tried to build my own agent from scratch. I learned quickly what should have been clear: one person can't out-build whole teams with almost unlimited resources. The CLIs overtook my agent fast.</p>
+<p style="margin: 0; font-size: 17px; line-height: 1.7; color: #cbc7bc;">But the problems I had seen along the way stayed. Today's CLIs are excellent, yet once you really use their potential, you lose the overview. I saw it while building Octryx AI with agents myself. Files and functions grow far too large. Old code stays behind and piles up. A specific test scenario gets hard-coded instead of solved in a general way. Step by step you lose the ability to understand your own code base. And agents don't question themselves, so a wrong turn can cost days. You win that time back, because agents write code so much faster. But in a large code base, a controlled process is what matters most.</p>
+<p style="margin: 0; font-size: 17px; line-height: 1.7; color: #cbc7bc;">I watched people work with them. Some were afraid to; others handed over everything. That isn't the providers' fault. It's ours, because we use them alone.</p>
+<p style="margin: 0; font-size: 17px; line-height: 1.7; color: #cbc7bc;">That is what I set out to fix: not one person alone with an agent, but a team working together, with a shared process, shared rules and shared knowledge. It took many experiments and, honestly, a lot of burned tokens. How to hand knowledge cleanly to a language model is also the subject of my bachelor's thesis.</p>
+<p style="margin: 0; font-size: 17px; line-height: 1.7; color: #cbc7bc;">The newest models make a lot possible, but their cost is hard to control. So the question became: what if we get the most out of small and local models? If one person defines how something is done well, the whole team can reuse it one to one, and agents can take the work over.</p>
+<p style="margin: 0; font-size: 17px; line-height: 1.7; color: #efece4;">The goal is simple: more time, output that is what it should be, and fewer beginner's mistakes. What one of us knows should be what the team knows.</p>
+<span style="font-size: 15px; color: #898f86;">— Luca Campisi, founder</span>
+</div>
+</div>
+<div class="pad" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 80px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px;">
+<div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 6px;">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: #898f86;">PART OF THE OCTRYX FAMILY</span>
+<span style="font-size: 15px; line-height: 1.55; color: #cbc7bc;">Octryx AI is one of four open-source projects. Each one started where the one before it hit its limit.</span>
+</div>
+<ul style="flex: 2 1 560px; margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+<li style="border: 1px solid rgba(232,223,197,0.35); border-radius: 0.58rem; padding: 10px 14px; display: flex; flex-direction: column; gap: 2px;"><strong style="color: #F3ECD6; font-size: 15px;">Octryx AI</strong><span style="font-size: 13px; color: #898f86;">Agents with a process</span></li>
+<li style="border: 1px solid rgba(255,255,255,0.08); border-radius: 0.58rem; padding: 10px 14px; display: flex; flex-direction: column; gap: 2px;"><strong style="color: #f7f4ec; font-size: 15px;">Capisco</strong><span style="font-size: 13px; color: #898f86;">UI builder</span></li>
+<li style="border: 1px solid rgba(255,255,255,0.08); border-radius: 0.58rem; padding: 10px 14px; display: flex; flex-direction: column; gap: 2px;"><strong style="color: #f7f4ec; font-size: 15px;">Decyra</strong><span style="font-size: 13px; color: #898f86;">Decisions on data</span></li>
+<li style="border: 1px solid rgba(255,255,255,0.08); border-radius: 0.58rem; padding: 10px 14px; display: flex; flex-direction: column; gap: 2px;"><strong style="color: #f7f4ec; font-size: 15px;">Data Platform</strong><span style="font-size: 13px; color: #898f86;">Your own data stack</span></li>
+</ul>
+<a href="/family/" style="display: inline-flex; align-items: center; min-height: 44px; color: #E8DFC5; font-weight: 600; font-size: 15px;">Meet the family →</a>
+</div>
+</section>
+
+<section id="deploy" style="border-top: 1px solid rgba(255,255,255,0.065); background: #141715;">
+<div class="pad" style="max-width: 1200px; margin: 0 auto; padding: 80px 24px; display: flex; flex-direction: column; gap: 28px;">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 780px;">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: #898f86;">RUN IT YOURSELF</span>
+<h2 class="h2" style="margin: 0; font-size: 36px; font-weight: 700; letter-spacing: -0.03em; color: #f7f4ec;">Start on one machine. No cloud lock-in.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #cbc7bc;">Octryx AI needs Postgres, S3-compatible object storage and a model endpoint — nothing vendor-specific. The coding agents run on your developers' machines; each run can get its own short-lived sandbox container.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px;">
+
+<div style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;"><strong style="font-size: 18px; color: #f7f4ec;">One machine with Docker</strong><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8; padding-left: 30px; background-image: linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(#6DA9D8, #6DA9D8), linear-gradient(rgba(255,255,255,0.16), rgba(255,255,255,0.16)); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">Built</span></div>
+<span style="font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Docker Compose brings up Octryx AI with Postgres, object storage and migrations on a single host. Enter your model access in .env; secrets are generated for you.</span>
+<code style="display: block; background: #0e100f; border: 1px solid rgba(255,255,255,0.065); border-radius: 0.58rem; padding: 12px 14px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.7; color: #F3ECD6; white-space: pre-wrap; overflow-wrap: anywhere;">git clone https://github.com/octryx-ai/octryx.git
+cd octryx
+cp .env.example .env   # fill in one model block
+docker compose up -d --build
+# with the demo Workspace:
+docker compose -f docker-compose.yml -f docker-compose.demo.yml up -d --build</code>
+</div>
+
+<div style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;"><strong style="font-size: 18px; color: #f7f4ec;">Developer machines</strong><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span></div>
+<span style="font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Claude Code runs as an arm on each developer’s device through octryx-claude, with their own subscription or a company model. A plain claude stays unchanged. Octryx AI keeps the process, rules and record. With /handoff a session goes to a colleague, who confirms the takeover.</span>
+<code style="display: block; background: #0e100f; border: 1px solid rgba(255,255,255,0.065); border-radius: 0.58rem; padding: 12px 14px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.7; color: #F3ECD6; white-space: pre-wrap; overflow-wrap: anywhere;"># in Octryx AI: Agents › Install octryx-claude
+# guide: octryx.ai/docs/install/launcher</code>
+</div>
+
+<div style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;"><strong style="font-size: 18px; color: #f7f4ec;">Kubernetes</strong><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E; padding-left: 30px; background-image: linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E), linear-gradient(#79B88E, #79B88E); background-repeat: no-repeat; background-size: 3px 5px, 3px 7px, 3px 9px, 3px 11px; background-position: left 9px bottom 6px, left 13px bottom 6px, left 17px bottom 6px, left 21px bottom 6px;">In real runs</span></div>
+<span style="font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Octryx AI is deployed and running on Kubernetes today. A Helm chart and its guide are in the docs; a package tested on more clusters follows in v0.1.</span>
+<code style="display: block; background: #0e100f; border: 1px solid rgba(255,255,255,0.065); border-radius: 0.58rem; padding: 12px 14px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.7; color: #F3ECD6; white-space: pre-wrap; overflow-wrap: anywhere;"># guide: octryx.ai/docs/install/kubernetes</code>
+</div>
+
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 12px; padding-top: 8px;">
+<a href="/docs/" style="background: #171918; border: 1px solid rgba(255,255,255,0.06); border-radius: 0.78rem; padding: 18px 20px; text-decoration: none; display: flex; flex-direction: column; gap: 4px;"><strong style="color: #f7f4ec;">Docs →</strong><span style="font-size: 14px; color: #cbc7bc;">Every feature, step by step.</span></a>
+<a href="/roadmap/" style="background: #171918; border: 1px solid rgba(255,255,255,0.06); border-radius: 0.78rem; padding: 18px 20px; text-decoration: none; display: flex; flex-direction: column; gap: 4px;"><strong style="color: #f7f4ec;">Roadmap →</strong><span style="font-size: 14px; color: #cbc7bc;">What comes next, with its real stage.</span></a>
+<a href="/benchmark/" style="background: #171918; border: 1px solid rgba(255,255,255,0.06); border-radius: 0.78rem; padding: 18px 20px; text-decoration: none; display: flex; flex-direction: column; gap: 4px;"><strong style="color: #f7f4ec;">Benchmark →</strong><span style="font-size: 14px; color: #cbc7bc;">Measured against Claude Code alone.</span></a>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer style="border-top: 1px solid rgba(255,255,255,0.065);">
+<div style="max-width: 1200px; margin: 0 auto; padding: 24px; display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; font-size: 13.5px; color: #898f86;">
+<span>© 2026 Luca Campisi · Octryx AI v0.0.1-alpha · Apache 2.0</span>
+<span style="display: flex; flex-wrap: wrap; gap: 20px;"><a href="/platform/">Octryx AI</a><a href="/family/">Family</a><a href="/research/">Research</a><a href="/benchmark/">Benchmark</a><a href="/roadmap/">Roadmap</a><a href="/docs/">Docs</a><a href="https://github.com/octryx-ai">GitHub</a></span>
+</div>
+</footer>
+</div>
+</body>
+</html>

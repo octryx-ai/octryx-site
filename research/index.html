@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Octryx — research</title>
+<meta name="description" content="What we tried, what we kept, what we dropped, from the first study project to Octryx AI.">
+<meta property="og:title" content="Octryx — research">
+<meta property="og:description" content="What we tried, what we kept, what we dropped, from the first study project to Octryx AI.">
+<link rel="icon" type="image/png" href="/assets/f43c50573d5a2c7650fc39566367477a.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0e100f}
+a{color:#E8DFC5}a:hover{color:#F3ECD6}
+.m-nav{display:none}
+.m-nav summary{list-style:none;cursor:pointer;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.12);border-radius:0.58rem}
+.m-nav summary::-webkit-details-marker{display:none}
+.m-sheet{position:absolute;left:0;right:0;top:100%;background:#0e100f;border-bottom:1px solid rgba(255,255,255,0.065);padding:4px 16px 12px;display:flex;flex-direction:column}
+.m-sheet a{color:#cbc7bc;text-decoration:none;padding:14px 4px;border-top:1px solid rgba(255,255,255,0.065);font-size:17px}
+@media (max-width: 760px){
+.navbar{padding-left:16px !important;padding-right:16px !important;flex-wrap:nowrap !important}
+.nav-links{display:none !important}
+.m-nav{display:block}
+.h1{font-size:36px !important;letter-spacing:-0.035em !important}
+.h2{font-size:27px !important}
+.pad{padding-top:44px !important;padding-bottom:44px !important;padding-left:16px !important;padding-right:16px !important}
+.banner{font-size:13px !important;padding-left:16px !important;padding-right:16px !important}
+}
+</style>
+</head>
+<body>
+<div style="font-family: Inter, 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif; color: #efece4; background: #0e100f; min-height: 100vh; font-size: 16px;">
+<div style="background: rgba(251,191,36,0.10); border-bottom: 1px solid rgba(251,191,36,0.28); color: #F3ECD6; font-size: 14px;">
+<div class="banner" style="max-width: 1200px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; justify-content: center; text-align: center;">
+<strong style="font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 12.5px; color: #1F1C17; background: #FBBF24; padding: 3px 9px; border-radius: 999px;">Under construction</strong>
+<span style="font-family: 'IBM Plex Mono', monospace; color: #FBBF24;">v0.0.1-alpha</span>
+<span>Octryx AI is early: under active development and tested in real runs. Nothing is stable yet.</span>
+</div>
+</div>
+
+<header style="position: sticky; top: 0; z-index: 20; background: rgba(14,16,15,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.065);">
+<nav aria-label="Main" class="navbar" style="position: relative; max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px;">
+<a href="/" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #f7f4ec;">
+<img src="/assets/f43c50573d5a2c7650fc39566367477a.png" alt="" style="width: 36px; height: 36px;">
+<span style="font-weight: 700; font-size: 20px; letter-spacing: -0.03em;">octryx</span>
+</a>
+<div style="flex: 1 1 auto;"></div>
+<div class="nav-links" style="display: flex; flex-wrap: wrap; gap: 4px 24px; align-items: center; font-size: 14px;">
+<a href="/platform/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Octryx AI</a>
+<a href="/family/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Family</a>
+<a href="/research/" aria-current="page" style="color: #f7f4ec; text-decoration: none; padding: 12px 0;">Research</a>
+<a href="/benchmark/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Benchmark</a>
+<a href="/roadmap/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Roadmap</a>
+<a href="/docs/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Docs</a>
+<a href="https://github.com/octryx-ai" style="color: #1F1C17; background: #E8DFC5; text-decoration: none; padding: 11px 18px; border-radius: 0.58rem; font-weight: 600;">GitHub</a>
+</div>
+<details class="m-nav">
+<summary aria-label="Menu"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="#efece4" stroke-width="1.5"><path d="M3 6h14M3 10h14M3 14h14"></path></svg></summary>
+<div class="m-sheet">
+<a href="/platform/">Octryx AI</a>
+<a href="/family/">Family</a>
+<a href="/research/">Research</a>
+<a href="/benchmark/">Benchmark</a>
+<a href="/roadmap/">Roadmap</a>
+<a href="/docs/">Docs</a>
+<a href="https://github.com/octryx-ai">GitHub</a>
+</div>
+</details>
+</nav>
+</header>
+
+<main>
+<section class="pad" style="max-width: 1200px; margin: 0 auto; padding: 64px 24px 40px; display: flex; flex-direction: column; gap: 16px;">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: #898f86;">RESEARCH</span>
+<h1 class="h1" style="margin: 0; font-size: 48px; line-height: 1.08; font-weight: 700; letter-spacing: -0.04em; color: #f7f4ec; max-width: 860px;">What we tried, what we kept, what we dropped.</h1>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #cbc7bc; max-width: 820px;">Octryx AI comes out of many experiments. A lot of what we built, we threw away again, and that is often the most useful part to share. This page records the main turns and why we took them, where the reason is written down. The research goes on: what we learn goes back into the product.</p>
+</section>
+<section style="border-top: 1px solid rgba(255,255,255,0.065); background: #141715;">
+<div class="pad" style="max-width: 1200px; margin: 0 auto; padding: 56px 24px; display: flex; flex-direction: column; gap: 20px;">
+<h2 class="h2" style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -0.03em; color: #f7f4ec;">Where it began: Decyra, a data platform and a UI builder</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #cbc7bc; max-width: 780px;">Octryx AI is the youngest of four <a href="/family/">Octryx projects</a>. The story starts three years ago with Decyra, a project from my studies that never let go of me. Each project began where the one before it hit its limit.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px;">
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(251,191,36,0.45); color: #FBBF24;">Start</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Decyra: a study project that was too big</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">Late 2023 · six months</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">I was naive: as a study project, I thought I could manage it. After six months there was a proof of concept, but nothing anyone could really use. What I gained was a lot of learning about ML models and inference, and soon I had to work with data platforms.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">A data platform, because nothing simple existed</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">Early 2024</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Was there something you could just use, simply and quickly? No. It needs resources, of course, and every solution grows more and more complex. So the Data Platform began: a complete stack from the data warehouse to ML experiments, with a UI on top.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8;">Changed</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Judged poorly: there was no UI</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">During the study project</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Once the data science part was done, it was clear that it wasn’t enough. The whole solution was judged poorly because I had built no UI for it. I kept going anyway, in exactly that direction.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Capisco: build the UI yourself</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">Spring 2024</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">From the UX and UI course came the hard questions: who uses the result in the end, and who works with it every day? There is no finished answer. So the idea: a way to design the UI yourself, together with the data and the workflows.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8;">Changed</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Decyra: from Java to Rust and Python</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">Over the following years</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Decyra started in Java and moved to Rust and Python. Here too, simpler is often better: many people need a backend that is easy to extend and easy to understand.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(127,135,149,0.55); color: #A3AAB5;">Explored</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Years, not months</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">Late 2023 until today</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">None of this is learned in three months. Several years lie in between, and every free minute went into understanding it better and trying to build a solution. I still work on all four projects and switch between them.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(127,135,149,0.55); color: #A3AAB5;">Explored</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Copy, paste, correct</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">The early AI tools</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">At the start, AI meant copying code out of a web chat, pasting it and fixing it. Then came the first command-line tools and their early mistakes. A notebook that said goodbye for good in the middle of a session. Working code in a single file of more than 5,000 lines that had to be pulled apart by hand. Those accidents led straight to the ideas below.</p>
+</article>
+</div>
+</div>
+</section>
+<section style="border-top: 1px solid rgba(255,255,255,0.065);">
+<div class="pad" style="max-width: 1200px; margin: 0 auto; padding: 56px 24px; display: flex; flex-direction: column; gap: 20px;">
+<h2 class="h2" style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -0.03em; color: #f7f4ec;">Then Octryx AI: from the first coding CLIs to a process</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #cbc7bc; max-width: 780px;">This part starts about two years ago, with the first coding CLIs. Before the first commit there are no exact dates, so the phases are shown in order. “Explored” means tried without a written verdict; “Kept” lives on in Octryx AI today.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px;">
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(127,135,149,0.55); color: #A3AAB5;">Explored</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">An own coding agent</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">Phase 1 · the first coding CLIs, about two years ago</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">When the first coding CLIs came out, the potential was obvious, and so was the fact that they weren’t there yet. So the first attempt was an own agent, built from scratch. The CLIs overtook it fast.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(127,135,149,0.55); color: #A3AAB5;">Explored</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Vector search and RAG</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">Phase 2 · knowledge</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">How to hand knowledge cleanly to a language model: vector search and retrieval-augmented generation. The question stayed, and is also the subject of a bachelor’s thesis.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(127,135,149,0.55); color: #A3AAB5;">Explored</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Controlling</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">Phase 2 · control</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Keeping track of what agents do and what that costs.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(127,135,149,0.55); color: #A3AAB5;">Explored</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">A TUI, a desktop app, remote access</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">Phase 3 · ways to work with agents</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Different front ends around the agents: a terminal interface, a desktop application, and remote access to running work.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(127,135,149,0.55); color: #A3AAB5;">Explored</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">BPMN</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">Phase 4 · processes, step by step</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">The focus moved from tools to process: how a piece of work goes step by step. BPMN was the first way to write that down.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Processes as flowcharts</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">Phase 4 · processes, step by step</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Flowcharts turned out to be the simpler form. Today a workflow is drawn as phases on a canvas in the workflow designer.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Good code quality</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">Phase 4 · processes, step by step</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Quality as part of the process, not an afterthought. Today: an independent review in its own session, and a review bot on every pull request.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Orchestration</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">Phase 4 · processes, step by step</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">One process that hands each step to the right agent and keeps them on one plan. Today: workflows that run coding agents on developers’ machines.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Automatic testing</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">Phase 4 · processes, step by step</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Only what is tested counts. Today: a test red before and green after a fix, and the declared tests run by the pipeline, without the agent.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(251,191,36,0.45); color: #FBBF24;">Start</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">First commit of Octryx AI</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">18 March 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Process, orchestration, testing and code quality came together in one platform: the layer above the coding agents.</p>
+</article>
+</div>
+</div>
+</section>
+<section style="border-top: 1px solid rgba(255,255,255,0.065);">
+<div class="pad" style="max-width: 1200px; margin: 0 auto; padding: 56px 24px; display: flex; flex-direction: column; gap: 20px;">
+<h2 class="h2" style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -0.03em; color: #f7f4ec;">Knowledge graph: four storage generations, back to PostgreSQL</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #cbc7bc; max-width: 780px;">The question was where the knowledge graph should live. We tried a separate graph engine twice, and came back to the database we run anyway.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px;">
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8;">Changed</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Graph tables in PostgreSQL</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">July 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Nodes, edges, aliases and claims as plain tables, with vector search next to them.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(214,120,110,0.5); color: #E0897E;">Dropped</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">A separate graph database: weighed and rejected</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">September 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">We weighed a dedicated graph database and decided against it: a second database to run, secure, back up, monitor and patch; double writes between two systems; separate transactions and recovery; commercial licensing and vendor dependence.</p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Better graph tooling also does not solve what matters to us: access rules, citations and governance.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(214,120,110,0.5); color: #E0897E;">Dropped</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">A graph extension inside PostgreSQL: Apache AGE</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">September 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">We tried Apache AGE. It did not add enough to justify one more piece of infrastructure: every component has to be maintained.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(214,120,110,0.5); color: #E0897E;">Dropped</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">A graph database per Workspace, plus a temporal graph library</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">Sept – Nov 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Each Workspace got its own graph database, with an open-source library for facts that change over time.</p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">It caused friction: the library forced settings the newest models refuse, loaded its own configuration and sent telemetry by default. Its full-text side added nothing to the results.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Back to PostgreSQL</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">November 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Before switching, we checked that the explorer, search, changes and graph hops return identical results. Now extraction no longer depends on the library, a new Workspace needs no new database, and an installation is PostgreSQL, vector search and an object store.</p>
+</article>
+</div>
+</div>
+</section>
+<section style="border-top: 1px solid rgba(255,255,255,0.065); background: #141715;">
+<div class="pad" style="max-width: 1200px; margin: 0 auto; padding: 56px 24px; display: flex; flex-direction: column; gap: 20px;">
+<h2 class="h2" style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -0.03em; color: #f7f4ec;">Knowledge: from many stores to one cited source</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px;">
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8;">Changed</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Real embeddings instead of a silent fallback</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">July 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">A misconfiguration used to fall back silently to vectors that carried no meaning. We switched to real multilingual embeddings: German questions now find English content.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">The reranker decides quality</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">July → September 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">At first the reranker stayed off: the open rerankers gave flat, wrong scores for German, and the good multilingual one had a non-commercial licence.</p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Then we measured. The reranker turned out to be the decisive quality lever: with it, a small local embedding model matched large hosted ones, at no embedding cost. Fusing word and vector search without weights could even hurt a strong vector model.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8;">Changed</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Eight parallel layers become one</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">September 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Sessions were fed by about eight parallel knowledge layers: four for documents, three for the graph, five for long-lived facts, each with its own review queue.</p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">We replaced them with one ledger of sources. Every answer built on knowledge is cited, and every citation resolves to a source revision and passage. The old stores were removed without migration.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Only what a source says</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">September 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">After a live answer added an uncited, wrong comparison, answers may only state what a cited source says. Sentences without a citation are removed.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Memory is not evidence</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">September 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">What agents remember from sessions is kept apart from sources. A memory is never cited as a source, and people confirm it before the team relies on it.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">A graph without a model</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">October 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">From manuals and configuration we build a structured graph by rules: outlines, parameter and compatibility tables, cross-references. No model calls.</p>
+</article>
+</div>
+</div>
+</section>
+<section style="border-top: 1px solid rgba(255,255,255,0.065);">
+<div class="pad" style="max-width: 1200px; margin: 0 auto; padding: 56px 24px; display: flex; flex-direction: column; gap: 20px;">
+<h2 class="h2" style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -0.03em; color: #f7f4ec;">Channels, webhooks and triggers</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px;">
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Channels</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">March 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Teams, Slack, email, Matrix and Telegram as channels to talk to Octryx AI. Teams also with calls and meeting summaries.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(214,120,110,0.5); color: #E0897E;">Dropped</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Connector watchers: removed</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">June → October 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Watchers on connectors with event rules were meant to start work on their own. In practice the rule actions did nothing, so we removed the admin page.</p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Instead, task systems are polled as an inbound source: Jira and ServiceNow today. GitHub Issues or another task system can be connected the same way.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8;">Changed</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Closed by default</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">September 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Channel webhooks are refused unless they are signed: Teams and Slack only. Email, Telegram and Matrix are polled. Channel secrets can be written but not read back.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Alerts start actions</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">October 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">An alert from your monitoring (Alertmanager, Grafana, Datadog, PagerDuty, Sentry or any JSON) starts an action in its Workspace. Repeats are grouped and the number of runs per hour is capped.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(214,120,110,0.5); color: #E0897E;">Dropped</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Prompt triggers retired</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">October 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Triggers defined as free-text prompts were retired in favour of explicit actions.</p>
+</article>
+</div>
+</div>
+</section>
+<section style="border-top: 1px solid rgba(255,255,255,0.065); background: #141715;">
+<div class="pad" style="max-width: 1200px; margin: 0 auto; padding: 56px 24px; display: flex; flex-direction: column; gap: 20px;">
+<h2 class="h2" style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -0.03em; color: #f7f4ec;">From a ticket in a connector to an agent that takes the work</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px;">
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8;">Changed</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Tasks and a ticket worker</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">March 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Scheduled tasks and a generic worker that picked up a ticket.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Work items next to Jira</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">June 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Jira stays the human task list and owns the business fields; Octryx AI owns how the work is executed.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">One kind of work item</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">July 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Parallel work-package structures merged into one work item. Agents can create their own items, which never sync back to Jira.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Agents claim work</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">October 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">A board where agents and people post messages, and agents claim work items: only one agent works on an item at a time.</p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Offer, never assign: the server never hands work to an agent that did not ask.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">One intake for every source</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">November 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">One intake pipeline with a registry of sources, including any REST API as a source of work.</p>
+</article>
+</div>
+</div>
+</section>
+<section style="border-top: 1px solid rgba(255,255,255,0.065);">
+<div class="pad" style="max-width: 1200px; margin: 0 auto; padding: 56px 24px; display: flex; flex-direction: column; gap: 20px;">
+<h2 class="h2" style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -0.03em; color: #f7f4ec;">Where coding runs</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px;">
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(214,120,110,0.5); color: #E0897E;">Dropped</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">A coding runtime on the server</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">June 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">The server ran its own coding loop: change plan, isolated workspace, validation, commit, pull request. A local test run showed many expensive model turns, few real actions and success claims without enough evidence. Its successor is Codex, an open-source coding agent under Apache 2.0: once the Codex integration is finished, Codex can run directly on the server.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Run the existing agent, don’t be one</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">September 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Coding agents run through the platform instead: Claude Code on the developer’s machine, with Octryx AI in between to steer, audit and enforce.</p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">The idea in one line: Octryx AI should run an existing coding agent, not be one.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(214,120,110,0.5); color: #E0897E;">Dropped</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">A vendor remote control: rejected</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">October 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">We looked at steering sessions through a vendor’s remote-control feature. It needs subscription sign-in, does not work behind a gateway, keeps transcripts at the vendor and is steered outside our policies and audit.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">The server never runs your code</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">November 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Builds and tests run on the owner’s machine or in a short-lived sandbox container per run, never in the platform’s own servers.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">A second engine</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">November 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Codex added as an experimental second engine on the developer’s machine, with the platform gateway as its only model provider; no run with Codex has gone through to a pull request yet.</p>
+</article>
+</div>
+</div>
+</section>
+<section style="border-top: 1px solid rgba(255,255,255,0.065); background: #141715;">
+<div class="pad" style="max-width: 1200px; margin: 0 auto; padding: 56px 24px; display: flex; flex-direction: column; gap: 20px;">
+<h2 class="h2" style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -0.03em; color: #f7f4ec;">Other things we dropped</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px;">
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(214,120,110,0.5); color: #E0897E;">Dropped</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Our own CLI and terminal UI</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">July 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Both were drafts. The coding agents people already use do this better.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(214,120,110,0.5); color: #E0897E;">Dropped</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">A model router before every turn</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">September 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">A small model picked the workflow before each turn. It called models outside the governed path: no guardrail scan, no budget, no trace. Now the workflow is chosen explicitly, or by the model inside the governed turn.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(214,120,110,0.5); color: #E0897E;">Dropped</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Team delivery</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">November 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">A coordinator split each story across several agents. On the same spec, one plain coding-agent session finished faster, cheaper and without help; the platform lost its time in its own rounds. It was replaced by one coding-agent session per epic, with the platform around it.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(214,120,110,0.5); color: #E0897E;">Dropped</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">VS Code extension</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">July 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Our own extension stopped; editors connect to Octryx AI over MCP instead.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(214,120,110,0.5); color: #E0897E;">Dropped</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">A forked visual agent designer</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">November 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Replaced by our own workflow designer.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8;">Changed</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Object storage</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">September 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">One S3-compatible store was rejected for its licence and an archived repository; we use another open one.</p>
+</article>
+</div>
+</div>
+</section>
+<section style="border-top: 1px solid rgba(255,255,255,0.065);">
+<div class="pad" style="max-width: 1200px; margin: 0 auto; padding: 56px 24px; display: flex; flex-direction: column; gap: 20px;">
+<h2 class="h2" style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -0.03em; color: #f7f4ec;">Handing work over when a subscription runs out</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px;">
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">From a manual handover to a product feature</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">October 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">When one person’s subscription hit its limit, the work stopped until someone handed it over by hand. We did that manually once, then made it a feature: a handover with goal, next steps and the work in progress.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">To a colleague, and from the phone</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">November 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">A run can go to any Workspace member, who accepts it; the work in progress travels with it. From the phone you can take over sessions and continue them.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Fall back instead of stopping</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">November 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">When a subscription is at its limit, the run continues on its next turn on a company model of the same class, never a bigger one, and returns after the reset; without such a model it pauses until the reset. The work can also be handed to a colleague: by default a person confirms the takeover. Offering it to colleagues first is planned. A limit counts only from real signals, never because an agent wrote about one.</p>
+</article>
+</div>
+</div>
+</section>
+<section style="border-top: 1px solid rgba(255,255,255,0.065); background: #141715;">
+<div class="pad" style="max-width: 1200px; margin: 0 auto; padding: 56px 24px; display: flex; flex-direction: column; gap: 20px;">
+<h2 class="h2" style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -0.03em; color: #f7f4ec;">Monitoring: one home per signal</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px;">
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8;">Changed</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">One read model</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">October 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">A separate trace store and dashboard ran in parallel. We removed it: runs, decisions, audit and cost now come from one place. Spend is counted from usage records only, and a model without a price is blocked under a cost cap.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Metrics for your own dashboards</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">November 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Prometheus metrics for requests, tokens, cost, runs and approvals, plus a Grafana dashboard to start from. The metrics endpoint needs a login or a scrape token.</p>
+</article>
+</div>
+</div>
+</section>
+<section style="border-top: 1px solid rgba(255,255,255,0.065);">
+<div class="pad" style="max-width: 1200px; margin: 0 auto; padding: 56px 24px; display: flex; flex-direction: column; gap: 20px;">
+<h2 class="h2" style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -0.03em; color: #f7f4ec;">What we are testing now</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px;">
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(251,191,36,0.45); color: #FBBF24;">In progress</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">The Coffee benchmark</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">One app, built with Claude Code and with Codex, everything published. <a href="/benchmark/">Method</a></p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(251,191,36,0.45); color: #FBBF24;">In progress</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Closing the gap to a coding agent alone</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">On Flutter, the build and the browser test take most of the time. A comparison in tokens against Claude Code on its own is being measured. <a href="/benchmark/#results">Results</a></p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">The roadmap</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">What comes next, with honest stages. <a href="/roadmap/">Roadmap</a></p>
+</article>
+</div>
+</div>
+</section>
+</main>
+
+<footer style="border-top: 1px solid rgba(255,255,255,0.065);">
+<div style="max-width: 1200px; margin: 0 auto; padding: 24px; display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; font-size: 13.5px; color: #898f86;">
+<span>© 2026 Luca Campisi · Octryx AI v0.0.1-alpha · Apache 2.0</span>
+<span style="display: flex; flex-wrap: wrap; gap: 20px;"><a href="/platform/">Octryx AI</a><a href="/family/">Family</a><a href="/research/">Research</a><a href="/benchmark/">Benchmark</a><a href="/roadmap/">Roadmap</a><a href="/docs/">Docs</a><a href="https://github.com/octryx-ai">GitHub</a></span>
+</div>
+</footer>
+</div>
+</body>
+</html>
