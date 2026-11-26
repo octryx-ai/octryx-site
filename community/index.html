@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Octryx AI — community</title>
+<meta name="description" content="How to take part in Octryx AI: discuss, reproduce the research, build plugins and connectors, bring a real problem.">
+<meta property="og:title" content="Octryx AI — community">
+<meta property="og:description" content="How to take part in Octryx AI: discuss, reproduce the research, build plugins and connectors, bring a real problem.">
+<link rel="icon" type="image/png" href="/assets/f43c50573d5a2c7650fc39566367477a.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0e100f}
+a{color:#E8DFC5}a:hover{color:#F3ECD6}
+.m-nav{display:none}
+.m-nav summary{list-style:none;cursor:pointer;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.12);border-radius:0.58rem}
+.m-nav summary::-webkit-details-marker{display:none}
+.m-sheet{position:absolute;left:0;right:0;top:100%;background:#0e100f;border-bottom:1px solid rgba(255,255,255,0.065);padding:4px 16px 12px;display:flex;flex-direction:column}
+.m-sheet a{color:#cbc7bc;text-decoration:none;padding:14px 4px;border-top:1px solid rgba(255,255,255,0.065);font-size:17px}
+.run-dot{position:absolute;left:-5px;width:12px;height:12px;border-radius:999px;background:#F3ECD6;box-shadow:0 0 0 4px rgba(243,236,214,0.12);animation:runDot 9s linear infinite}
+@keyframes runDot{0%{top:0%;opacity:0}4%{opacity:1}92%{top:calc(100% - 12px);opacity:1}100%{top:calc(100% - 12px);opacity:0}}
+.run-step{animation:stepOn 9s ease-in-out infinite both}
+@keyframes stepOn{0%{opacity:.38}5%{opacity:1}82%{opacity:1}92%{opacity:.38}100%{opacity:.38}}
+@media (prefers-reduced-motion: reduce){.run-dot{animation:none;top:0}.run-step{animation:none;opacity:1}}
+@media (max-width: 760px){
+.navbar{padding-left:16px !important;padding-right:16px !important;flex-wrap:nowrap !important}
+.nav-links{display:none !important}
+.m-nav{display:block}
+.h1{font-size:36px !important;letter-spacing:-0.035em !important}
+.h2{font-size:27px !important}
+.pad{padding-top:44px !important;padding-bottom:44px !important;padding-left:16px !important;padding-right:16px !important}
+.tree{display:none}
+.banner{font-size:13px !important;padding-left:16px !important;padding-right:16px !important}
+}
+</style>
+</head>
+<body>
+<div style="font-family: Inter, 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif; color: #efece4; background: #0e100f; min-height: 100vh; font-size: 16px;">
+
+<div style="background: rgba(251,191,36,0.10); border-bottom: 1px solid rgba(251,191,36,0.28); color: #F3ECD6; font-size: 14px;">
+<div class="banner" style="max-width: 1200px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; justify-content: center; text-align: center;">
+<span style="font-family: 'IBM Plex Mono', monospace; color: #FBBF24;">v0.0.1-alpha</span>
+<span>Octryx AI is early and changing. Every feature shows its real stage; the source is on <a href="https://github.com/octryx-ai/octryx" style="color: #FBBF24;">GitHub</a> under Apache 2.0.</span>
+<a href="/roadmap/" style="color: #FBBF24;">See the roadmap</a>
+</div>
+</div>
+
+<header style="position: sticky; top: 0; z-index: 20; background: rgba(14,16,15,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.065);">
+<nav aria-label="Main" class="navbar" style="position: relative; max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px;">
+<a href="#top" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #f7f4ec;">
+<img src="/assets/f43c50573d5a2c7650fc39566367477a.png" alt="" style="width: 36px; height: 36px;">
+<span style="font-weight: 700; font-size: 20px; letter-spacing: -0.03em;">octryx</span>
+</a>
+<div style="flex: 1 1 auto;"></div>
+<div class="nav-links" style="display: flex; flex-wrap: wrap; gap: 4px 24px; align-items: center; font-size: 14px;">
+<a href="/platform/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Octryx AI</a>
+<a href="/family/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Family</a>
+<a href="/story/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Story</a>
+<a href="/research/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Research</a>
+<a href="/benchmark/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Benchmark</a>
+<a href="/roadmap/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Roadmap</a>
+<a href="/community/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Community</a>
+<a href="/docs/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Docs</a>
+<a href="https://github.com/octryx-ai/octryx" style="color: #1F1C17; background: #E8DFC5; text-decoration: none; padding: 11px 18px; border-radius: 0.58rem; font-weight: 600;">GitHub</a>
+</div>
+<details class="m-nav">
+<summary aria-label="Menu"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="#efece4" stroke-width="1.5"><path d="M3 6h14M3 10h14M3 14h14"></path></svg></summary>
+<div class="m-sheet">
+<a href="/platform/">Octryx AI</a>
+<a href="/family/">Family</a>
+<a href="/story/">Story</a>
+<a href="/research/">Research</a>
+<a href="/benchmark/">Benchmark</a>
+<a href="/roadmap/">Roadmap</a>
+<a href="/community/">Community</a>
+<a href="/docs/">Docs</a>
+<a href="https://github.com/octryx-ai">GitHub</a>
+</div>
+</details>
+</nav>
+</header>
+
+<main id="top">
+<main style="border-top: 1px solid rgba(255,255,255,0.065);">
+<div class="pad" style="max-width: 1200px; margin: 0 auto; padding: 72px 24px 80px; display: flex; flex-direction: column; gap: 24px;">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: #898f86;">COMMUNITY</span>
+<h1 class="h1" style="margin: 0; font-size: 48px; font-weight: 700; letter-spacing: -0.04em; color: #f7f4ec;">Build it with us.</h1>
+<p style="margin: 0; font-size: 17px; line-height: 1.7; color: #cbc7bc; max-width: 760px;">One person can’t cover everything. A community can. Honest status: the repository has just gone public, and there is no community yet. These are the ways in.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 12px;"><article style="background: #171918; border: 1px solid rgba(255,255,255,0.05); border-radius: 0.78rem; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px; min-width: 0;"><h2 style="margin: 0; font-size: 20px; font-weight: 700; color: #f7f4ec;">Discuss</h2><p style="margin: 0; font-size: 15px; line-height: 1.6; color: #cbc7bc;">Ask questions, share what you tried, argue with our choices.</p><a href="https://github.com/octryx-ai/octryx/discussions" style="align-self: flex-start; color: #E8DFC5; font-weight: 600; min-height: 44px; display: inline-flex; align-items: center;">GitHub Discussions →</a></article><article style="background: #171918; border: 1px solid rgba(255,255,255,0.05); border-radius: 0.78rem; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px; min-width: 0;"><h2 style="margin: 0; font-size: 20px; font-weight: 700; color: #f7f4ec;">Reproduce our research</h2><p style="margin: 0; font-size: 15px; line-height: 1.6; color: #cbc7bc;">Every benchmark round is public: the cases, the base commits, the settings. Run a round yourself and tell us where your numbers differ.</p><a href="/benchmark/#cases" style="align-self: flex-start; color: #E8DFC5; font-weight: 600; min-height: 44px; display: inline-flex; align-items: center;">Reproduce a round →</a></article><article style="background: #171918; border: 1px solid rgba(255,255,255,0.05); border-radius: 0.78rem; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px; min-width: 0;"><h2 style="margin: 0; font-size: 20px; font-weight: 700; color: #f7f4ec;">Build plugins and connectors</h2><p style="margin: 0; font-size: 15px; line-height: 1.6; color: #cbc7bc;">Connect a tool your team uses, or add a workflow phase. The contributor guide says how a change gets in.</p><a href="/docs/contribute/" style="align-self: flex-start; color: #E8DFC5; font-weight: 600; min-height: 44px; display: inline-flex; align-items: center;">Contributor guide →</a></article><article style="background: #171918; border: 1px solid rgba(255,255,255,0.05); border-radius: 0.78rem; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px; min-width: 0;"><h2 style="margin: 0; font-size: 20px; font-weight: 700; color: #f7f4ec;">Bring a real problem</h2><p style="margin: 0; font-size: 15px; line-height: 1.6; color: #cbc7bc;">A process that keeps breaking, knowledge that never reaches the team: describe it. Real problems shape the roadmap.</p><a href="https://github.com/octryx-ai/octryx/discussions" style="align-self: flex-start; color: #E8DFC5; font-weight: 600; min-height: 44px; display: inline-flex; align-items: center;">Describe a problem →</a></article></div>
+<div style="background: #171918; border: 1px solid rgba(255,255,255,0.05); border-radius: 0.78rem; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<strong style="font-size: 16px; color: #f7f4ec;">Where to find us</strong>
+<ul style="margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: 15px; line-height: 1.6; color: #cbc7bc;">
+<li><a href="https://github.com/octryx-ai/octryx/discussions" style="color: #E8DFC5;">GitHub Discussions</a>: questions, ideas and show-and-tell.</li>
+<li><a href="https://github.com/octryx-ai/octryx/issues" style="color: #E8DFC5;">GitHub issues</a>: bugs.</li>
+<li>A security problem: <a href="https://github.com/octryx-ai/octryx/security/advisories/new" style="color: #E8DFC5;">report it privately</a>.</li>
+<li>Conduct: <a href="/docs/contribute/report#conduct-issues" style="color: #E8DFC5;">how to report a conduct issue</a>.</li>
+<li>Anything else: <a href="mailto:info@octryx.ai" style="color: #E8DFC5; user-select: all;">info@octryx.ai</a>.</li>
+</ul>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #cbc7bc;">I build Octryx alongside a full-time job and a life outside of code. I'm doing my best to move it toward the vision we can see — steadily, in the open, and hopefully not alone. Replies may take a few days; every one of them is read.</p>
+</div>
+</div>
+</main>
+
+<footer style="border-top: 1px solid rgba(255,255,255,0.065);">
+<div style="max-width: 1200px; margin: 0 auto; padding: 24px; display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; font-size: 13.5px; color: #898f86;">
+<span>© 2026 Luca Campisi · Octryx AI v0.0.1-alpha · Apache 2.0</span>
+<span style="display: flex; flex-wrap: wrap; gap: 20px;"><a href="/platform/">Octryx AI</a><a href="/family/">Family</a><a href="/story/">Story</a><a href="/research/">Research</a><a href="/benchmark/">Benchmark</a><a href="/roadmap/">Roadmap</a><a href="/community/">Community</a><a href="/docs/">Docs</a><a href="https://github.com/octryx-ai">GitHub</a></span>
+</div>
+</footer>
+</div>
+</body>
+</html>
