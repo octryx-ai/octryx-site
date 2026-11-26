@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Octryx — research</title>
+<title>Octryx AI — research</title>
 <meta name="description" content="What we tried, what we kept, what we dropped, from the first study project to Octryx AI.">
-<meta property="og:title" content="Octryx — research">
+<meta property="og:title" content="Octryx AI — research">
 <meta property="og:description" content="What we tried, what we kept, what we dropped, from the first study project to Octryx AI.">
 <link rel="icon" type="image/png" href="/assets/f43c50573d5a2c7650fc39566367477a.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,6 +79,7 @@ a{color:#E8DFC5}a:hover{color:#F3ECD6}
 <h1 class="h1" style="margin: 0; font-size: 48px; line-height: 1.08; font-weight: 700; letter-spacing: -0.04em; color: #f7f4ec; max-width: 860px;">What we tried, what we kept, what we dropped.</h1>
 <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #cbc7bc; max-width: 820px;">Octryx AI comes out of many experiments. A lot of what we built, we threw away again, and that is often the most useful part to share. This page records the main turns and why we took them, where the reason is written down. The research goes on: what we learn goes back into the product.</p>
 </section>
+<div class="pad" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 8px;"><div style="background: #171918; border: 1px solid rgba(232,223,197,0.25); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px;"><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: #898f86;">FIVE ARTICLES</span><ul style="margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: 16px; line-height: 1.6;"><li><a href="/research/own-coding-agent/" style="color: #E8DFC5;">Why I stopped building my own coding agent</a></li><li><a href="/research/single-agent-vs-multi-agent/" style="color: #E8DFC5;">Why a single coding agent beat our multi-agent delivery</a></li><li><a href="/research/memory-is-not-evidence/" style="color: #E8DFC5;">Memory is not evidence</a></li><li><a href="/research/knowledge-graph-back-to-postgresql/" style="color: #E8DFC5;">Four generations of knowledge graphs, back to PostgreSQL</a></li><li><a href="/research/reranker-over-embedding-model/" style="color: #E8DFC5;">Why the reranker matters more than the embedding model</a></li></ul><span style="font-size: 13.5px; color: #898f86;">Each one tells a single decision from the log below as problem, starting assumption, experiment, results, limitations and decision.</span></div></div>
 <section style="border-top: 1px solid rgba(255,255,255,0.065); background: #141715;">
 <div class="pad" style="max-width: 1200px; margin: 0 auto; padding: 56px 24px; display: flex; flex-direction: column; gap: 20px;">
 <h2 class="h2" style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -0.03em; color: #f7f4ec;">Where it began: Decyra, a data platform and a UI builder</h2>
@@ -186,7 +187,7 @@ a{color:#E8DFC5}a:hover{color:#F3ECD6}
 <div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
 <h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Automatic testing</h3>
 <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">Phase 4 · processes, step by step</span></p>
-<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">A change counts as done when tests show it works, not when an agent says so. Today: a test red before and green after a fix, and the declared tests run by the pipeline, without the agent.</p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">In our workflows, a change counts as done when tests show it works, not when an agent says so. Today: a test red before and green after a fix, and the declared tests run by the pipeline, without the agent.</p>
 </article>
 <article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
 <div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(251,191,36,0.45); color: #FBBF24;">Start</span></div>
@@ -249,10 +250,10 @@ a{color:#E8DFC5}a:hover{color:#F3ECD6}
 </article>
 <article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
 <div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
-<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">The reranker decides quality</h3>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">The reranker mattered most for quality</h3>
 <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">July → September 2026</span></p>
 <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">At first the reranker stayed off: the open rerankers gave flat, wrong scores for German, and the good multilingual one had a non-commercial licence.</p>
-<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Then we measured. The reranker turned out to be the decisive quality lever: with it, a small local embedding model matched large hosted ones, at no embedding cost. Fusing word and vector search without weights could even hurt a strong vector model.</p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Then we measured. In our measurements, the reranker turned out to be the biggest quality lever: with it, a small local embedding model matched large hosted ones, at no embedding cost. Fusing word and vector search without weights could even hurt a strong vector model.</p>
 </article>
 <article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
 <div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(109,169,216,0.45); color: #6DA9D8;">Changed</span></div>
@@ -366,7 +367,7 @@ a{color:#E8DFC5}a:hover{color:#F3ECD6}
 <div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(214,120,110,0.5); color: #E0897E;">Dropped</span></div>
 <h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">A coding runtime on the server</h3>
 <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">June 2026</span></p>
-<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">The server ran its own coding loop: change plan, isolated workspace, validation, commit, pull request. A local test run showed many expensive model turns, few real actions and success claims without enough evidence. Its successor is Codex, an open-source coding agent under Apache 2.0: once the Codex integration is finished, Codex can run directly on the server.</p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">The server ran its own coding loop: change plan, isolated workspace, validation, commit, pull request. A local test run showed many expensive model turns, few real actions and success claims without enough evidence. Its successor is Codex, an open-source coding agent under Apache 2.0. The 0.0.2 branch (not released) brings a new Codex driver for developer machines and server runners.</p>
 </article>
 <article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
 <div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
