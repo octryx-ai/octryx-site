@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Octryx AI — the story</title>
+<meta name="description" content="Why Octryx AI exists: not a better agent, but a better system around coding agents. About three minutes.">
+<meta property="og:title" content="Octryx AI — the story">
+<meta property="og:description" content="Why Octryx AI exists: not a better agent, but a better system around coding agents. About three minutes.">
+<link rel="icon" type="image/png" href="/assets/f43c50573d5a2c7650fc39566367477a.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0e100f}
+a{color:#E8DFC5}a:hover{color:#F3ECD6}
+.m-nav{display:none}
+.m-nav summary{list-style:none;cursor:pointer;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.12);border-radius:0.58rem}
+.m-nav summary::-webkit-details-marker{display:none}
+.m-sheet{position:absolute;left:0;right:0;top:100%;background:#0e100f;border-bottom:1px solid rgba(255,255,255,0.065);padding:4px 16px 12px;display:flex;flex-direction:column}
+.m-sheet a{color:#cbc7bc;text-decoration:none;padding:14px 4px;border-top:1px solid rgba(255,255,255,0.065);font-size:17px}
+.run-dot{position:absolute;left:-5px;width:12px;height:12px;border-radius:999px;background:#F3ECD6;box-shadow:0 0 0 4px rgba(243,236,214,0.12);animation:runDot 9s linear infinite}
+@keyframes runDot{0%{top:0%;opacity:0}4%{opacity:1}92%{top:calc(100% - 12px);opacity:1}100%{top:calc(100% - 12px);opacity:0}}
+.run-step{animation:stepOn 9s ease-in-out infinite both}
+@keyframes stepOn{0%{opacity:.38}5%{opacity:1}82%{opacity:1}92%{opacity:.38}100%{opacity:.38}}
+@media (prefers-reduced-motion: reduce){.run-dot{animation:none;top:0}.run-step{animation:none;opacity:1}}
+@media (max-width: 760px){
+.navbar{padding-left:16px !important;padding-right:16px !important;flex-wrap:nowrap !important}
+.nav-links{display:none !important}
+.m-nav{display:block}
+.h1{font-size:36px !important;letter-spacing:-0.035em !important}
+.h2{font-size:27px !important}
+.pad{padding-top:44px !important;padding-bottom:44px !important;padding-left:16px !important;padding-right:16px !important}
+.tree{display:none}
+.banner{font-size:13px !important;padding-left:16px !important;padding-right:16px !important}
+}
+</style>
+</head>
+<body>
+<div style="font-family: Inter, 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif; color: #efece4; background: #0e100f; min-height: 100vh; font-size: 16px;">
+
+<div style="background: rgba(251,191,36,0.10); border-bottom: 1px solid rgba(251,191,36,0.28); color: #F3ECD6; font-size: 14px;">
+<div class="banner" style="max-width: 1200px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; justify-content: center; text-align: center;">
+<span style="font-family: 'IBM Plex Mono', monospace; color: #FBBF24;">v0.0.1-alpha</span>
+<span>Octryx AI is early and changing. Every feature shows its real stage; the source is on <a href="https://github.com/octryx-ai/octryx" style="color: #FBBF24;">GitHub</a> under Apache 2.0.</span>
+<a href="/roadmap/" style="color: #FBBF24;">See the roadmap</a>
+</div>
+</div>
+
+<header style="position: sticky; top: 0; z-index: 20; background: rgba(14,16,15,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.065);">
+<nav aria-label="Main" class="navbar" style="position: relative; max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px;">
+<a href="#top" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #f7f4ec;">
+<img src="/assets/f43c50573d5a2c7650fc39566367477a.png" alt="" style="width: 36px; height: 36px;">
+<span style="font-weight: 700; font-size: 20px; letter-spacing: -0.03em;">octryx</span>
+</a>
+<div style="flex: 1 1 auto;"></div>
+<div class="nav-links" style="display: flex; flex-wrap: wrap; gap: 4px 24px; align-items: center; font-size: 14px;">
+<a href="/platform/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Octryx AI</a>
+<a href="/family/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Family</a>
+<a href="/story/" aria-current="page" style="color: #f7f4ec; text-decoration: none; padding: 12px 0;">Story</a>
+<a href="/research/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Research</a>
+<a href="/benchmark/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Benchmark</a>
+<a href="/roadmap/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Roadmap</a>
+<a href="/docs/" style="color: #cbc7bc; text-decoration: none; padding: 12px 0;">Docs</a>
+<a href="https://github.com/octryx-ai/octryx" style="color: #1F1C17; background: #E8DFC5; text-decoration: none; padding: 11px 18px; border-radius: 0.58rem; font-weight: 600;">GitHub</a>
+</div>
+<details class="m-nav">
+<summary aria-label="Menu"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="#efece4" stroke-width="1.5"><path d="M3 6h14M3 10h14M3 14h14"></path></svg></summary>
+<div class="m-sheet">
+<a href="/platform/">Octryx AI</a>
+<a href="/family/">Family</a>
+<a href="/story/">Story</a>
+<a href="/research/">Research</a>
+<a href="/benchmark/">Benchmark</a>
+<a href="/roadmap/">Roadmap</a>
+<a href="/docs/">Docs</a>
+<a href="https://github.com/octryx-ai">GitHub</a>
+</div>
+</details>
+</nav>
+</header>
+
+<main id="top">
+<main id="story" style="border-top: 1px solid rgba(255,255,255,0.065);">
+<article class="pad" style="max-width: 720px; margin: 0 auto; padding: 72px 24px 80px; display: flex; flex-direction: column; gap: 20px;">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: #898f86;">THE STORY · ABOUT 3 MINUTES</span>
+<h1 class="h1" style="margin: 0; font-size: 48px; font-weight: 700; line-height: 1.08; letter-spacing: -0.04em; color: #f7f4ec;">Not a better agent. A better system around agents.</h1>
+<p style="margin: 0; font-size: 20px; line-height: 1.6; color: #efece4;">AI makes individuals faster. I want it to make teams smarter. This is how Octryx AI came about, and what it is trying to be.</p>
+
+<h2 class="h2" style="margin: 24px 0 0; font-size: 26px; font-weight: 700; letter-spacing: -0.02em; color: #f7f4ec;">It started with the first coding agents</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #cbc7bc;">When the first coding CLIs came out, the potential was obvious. So was the fact that they weren't there yet. I did what many developers did: I tried to build my own agent from scratch.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #cbc7bc;">It taught me something that should have been clear from the start. One person can't out-build teams with almost unlimited resources. The CLIs overtook my agent fast, and they keep getting better. That was fine. It meant I could stop competing with them.</p>
+
+<h2 class="h2" style="margin: 24px 0 0; font-size: 26px; font-weight: 700; letter-spacing: -0.02em; color: #f7f4ec;">Speed without lasting quality</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #cbc7bc;">But the problems I had seen along the way stayed. I build Octryx AI itself with coding agents, every day, and I kept seeing the same pattern:</p>
+<ul style="margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 8px;"><li style="font-size: 18px; line-height: 1.7; color: #cbc7bc;">Files and functions grow far too large.</li><li style="font-size: 18px; line-height: 1.7; color: #cbc7bc;">Old code stays behind and piles up.</li><li style="font-size: 18px; line-height: 1.7; color: #cbc7bc;">A test gets fitted to one scenario instead of solving the problem in general.</li><li style="font-size: 18px; line-height: 1.7; color: #cbc7bc;">Step by step you lose the overview, and with it the ability to understand your own code base.</li></ul>
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #cbc7bc;">Agents don't question themselves, so one wrong turn can cost days. You win that time back, because agents write code so much faster. But on a large code base, speed alone doesn't last. A controlled process is what matters most.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #cbc7bc;">I watched other people work with agents, too. Some were afraid to use them; others handed over everything. Neither is the providers' fault. It's how we use them: alone. One person, one agent, and the rules in that person's head or in a markdown file on their machine.</p>
+
+<h2 class="h2" style="margin: 24px 0 0; font-size: 26px; font-weight: 700; letter-spacing: -0.02em; color: #f7f4ec;">The shift</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #cbc7bc;">So I stopped trying to build a better agent and started building the layer above them. The coding agent keeps doing what it is good at: writing code on a developer's machine. Octryx AI decides the steps, checks the result, keeps the knowledge and writes down what happened.</p>
+<ul style="margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 8px;"><li style="font-size: 18px; line-height: 1.7; color: #cbc7bc;"><strong style="color: #f7f4ec;">One process.</strong> Phases your team defines, from a work item to a reviewed pull request.</li><li style="font-size: 18px; line-height: 1.7; color: #cbc7bc;"><strong style="color: #f7f4ec;">One set of rules.</strong> Code style and agent instructions in one place, versioned, given to every agent at the start of a run.</li><li style="font-size: 18px; line-height: 1.7; color: #cbc7bc;"><strong style="color: #f7f4ec;">One record.</strong> Who asked, which agent, which model, which tests, what came out.</li></ul>
+
+<h2 class="h2" style="margin: 24px 0 0; font-size: 26px; font-weight: 700; letter-spacing: -0.02em; color: #f7f4ec;">The idea: teams smarter, not just individuals faster</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #cbc7bc;"><strong style="color: #f7f4ec;">Collective knowledge.</strong> If one person works out how something is done well, the whole team should be able to reuse it one to one, and so should the agents. Today that means shared rules and a shared search with sources. Later, I hope, the knowledge of a whole company, not only its code.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #cbc7bc;"><strong style="color: #f7f4ec;">Trust through evidence.</strong> You shouldn't have to believe an agent. A test that fails on the old code and passes on the new one, an independent review, a record you can check afterwards.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #cbc7bc;"><strong style="color: #f7f4ec;">A better process over a bigger model.</strong> The newest models make a lot possible, but their cost is hard to control. I want to get the most out of small and local models, and a good process helps them more than a bigger model would. How to hand knowledge cleanly to a language model is also the subject of my bachelor's thesis. One example from the current development: the agent used to see 101 tools on every turn, about 19.8k tokens. Now it sees 10 core tools and searches for the rest when it needs them, about 2.1k tokens.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #cbc7bc;"><strong style="color: #f7f4ec;">Open source.</strong> One person can't cover everything or try many solutions at once. A community can. Octryx AI is self-hosted and Apache 2.0.</p>
+
+<h2 class="h2" style="margin: 24px 0 0; font-size: 26px; font-weight: 700; letter-spacing: -0.02em; color: #f7f4ec;">Where it stands</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #cbc7bc;">Early. v0.0.1-alpha is public. It is for coding teams: Claude Code does the work, and Octryx AI takes a work item to a reviewed pull request. In our six test cases, all six got there with no human step. Codex support is experimental. There is no community yet; the repository has just gone public. In development on the 0.0.2 branch, not released yet: Codex as a second engine, on the developer's machine and on a server; runners on a server, a container pool with no personal credentials in the container; and one gateway for all model traffic through a bundled LiteLLM. The <a href="/roadmap/" style="color: #E8DFC5;">roadmap</a> shows the real stage of every part.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #efece4;">If this matches problems you have seen, I'd like to hear from you. If it doesn't, even more so. Open an issue on GitHub or write to <a href="mailto:info@octryx.ai" style="color: #E8DFC5; user-select: all;">info@octryx.ai</a>.</p>
+<span style="font-size: 15px; color: #898f86;">— Luca Campisi, founder</span>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px;">
+<a href="https://github.com/octryx-ai/octryx" style="background: #E8DFC5; color: #1F1C17; text-decoration: none; padding: 14px 22px; border-radius: 0.58rem; font-weight: 600;">Octryx AI on GitHub</a>
+<a href="/docs/install/docker" style="border: 1px solid rgba(255,255,255,0.12); color: #efece4; text-decoration: none; padding: 13px 22px; border-radius: 0.58rem; font-weight: 500;">Try it on one machine</a>
+<a href="/#today" style="border: 1px solid rgba(255,255,255,0.12); color: #efece4; text-decoration: none; padding: 13px 22px; border-radius: 0.58rem; font-weight: 500;">What works today</a>
+<a href="https://github.com/octryx-ai/octryx/issues" style="border: 1px solid rgba(255,255,255,0.12); color: #efece4; text-decoration: none; padding: 13px 22px; border-radius: 0.58rem; font-weight: 500;">Tell us what you think</a>
+</div>
+<div style="margin-top: 24px; background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 18px 20px; display: flex; gap: 16px; align-items: center;">
+<img src="/assets/f43c50573d5a2c7650fc39566367477a.png" alt="The Octryx octopus" style="width: 64px; height: 64px; flex: none;">
+<span style="font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><strong style="color: #F3ECD6;">About the octopus.</strong> It didn't start with orchestration. It started with food: the colours of my own kitchen and a recipe, polpo alla griglia. That octopuses turn out to be clever animals whose arms work on their own was a happy coincidence.</span>
+</div>
+</article>
+</main>
+
+<footer style="border-top: 1px solid rgba(255,255,255,0.065);">
+<div style="max-width: 1200px; margin: 0 auto; padding: 24px; display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; font-size: 13.5px; color: #898f86;">
+<span>© 2026 Luca Campisi · Octryx AI v0.0.1-alpha · Apache 2.0</span>
+<span style="display: flex; flex-wrap: wrap; gap: 20px;"><a href="/platform/">Octryx AI</a><a href="/family/">Family</a><a href="/story/">Story</a><a href="/research/">Research</a><a href="/benchmark/">Benchmark</a><a href="/roadmap/">Roadmap</a><a href="/docs/">Docs</a><a href="https://github.com/octryx-ai">GitHub</a></span>
+</div>
+</footer>
+</div>
+</body>
+</html>
