@@ -33,7 +33,7 @@ a{color:#E8DFC5}a:hover{color:#F3ECD6}
 <div style="font-family: Inter, 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif; color: #efece4; background: #0e100f; min-height: 100vh; font-size: 16px;">
 <div style="background: rgba(251,191,36,0.10); border-bottom: 1px solid rgba(251,191,36,0.28); color: #F3ECD6; font-size: 14px;">
 <div class="banner" style="max-width: 1200px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; justify-content: center; text-align: center;">
-<span style="font-family: 'IBM Plex Mono', monospace; color: #FBBF24;">v0.0.1-alpha</span>
+<span style="font-family: 'IBM Plex Mono', monospace; color: #FBBF24;">v0.0.2-alpha</span>
 <span>Octryx AI is early: under active development and tested in real runs. Nothing is stable yet.</span>
 </div>
 </div>
@@ -367,7 +367,7 @@ a{color:#E8DFC5}a:hover{color:#F3ECD6}
 <div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(214,120,110,0.5); color: #E0897E;">Dropped</span></div>
 <h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">A coding runtime on the server</h3>
 <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">June 2026</span></p>
-<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">The server ran its own coding loop: change plan, isolated workspace, validation, commit, pull request. A local test run showed many expensive model turns, few real actions and success claims without enough evidence. Its successor is Codex, an open-source coding agent under Apache 2.0. The 0.0.2 branch (not released) brings a new Codex driver for developer machines and server runners.</p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">The server ran its own coding loop: change plan, isolated workspace, validation, commit, pull request. A local test run showed many expensive model turns, few real actions and success claims without enough evidence. Its successor is Codex, an open-source coding agent under Apache 2.0, which since v0.0.2-alpha also runs on server runners.</p>
 </article>
 <article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
 <div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
@@ -386,13 +386,19 @@ a{color:#E8DFC5}a:hover{color:#F3ECD6}
 <div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
 <h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">The server never runs your code</h3>
 <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">November 2026</span></p>
-<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Builds and tests run on the owner’s machine or in a short-lived sandbox container per run, never in the platform’s own servers.</p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Builds and tests run on the owner’s machine or in a short-lived sandbox container per run, never in the platform’s own servers. Since 0.0.2, coding work may also run in separate sandboxed runner containers.</p>
+</article>
+<article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
+<h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">Server runners</h3>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">November 2026</span></p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">The platform stopped running agents itself: every agent turn runs as Claude Code or Codex, on a person’s device or on server runners, a pool of sandboxed containers the installation runs. A runner serves one person in one Workspace at a time, empties its disk before it switches and reaches only the runner gateway. Released in v0.0.2-alpha.</p>
 </article>
 <article style="background: #171918; border: 1px solid rgba(255,255,255,0.04); border-radius: 0.78rem; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0;">
 <div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="display: inline-block; align-self: flex-start; white-space: normal; max-width: 100%; box-sizing: border-box; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 12px; border: 1px solid rgba(121,184,142,0.45); color: #79B88E;">Kept</span></div>
 <h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: #f7f4ec;">A second engine</h3>
 <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #898f86;">November 2026</span></p>
-<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Codex added as an experimental second engine on the developer’s machine, with the platform gateway as its only model provider; no run with Codex has gone through to a pull request yet.</p>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #cbc7bc;">Codex added as an experimental second engine on the developer’s machine, with the platform gateway as its only model provider; no run with Codex had gone through to a pull request yet. In 0.0.2 Codex runs on codex app-server, on devices and server runners, and is no longer experimental.</p>
 </article>
 </div>
 </div>
@@ -510,7 +516,7 @@ a{color:#E8DFC5}a:hover{color:#F3ECD6}
 
 <footer style="border-top: 1px solid rgba(255,255,255,0.065);">
 <div style="max-width: 1200px; margin: 0 auto; padding: 24px; display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; font-size: 13.5px; color: #898f86;">
-<span>© 2026 Luca Campisi · Octryx AI v0.0.1-alpha · Apache 2.0</span>
+<span>© 2026 Luca Campisi · Octryx AI v0.0.2-alpha · Apache 2.0</span>
 <span style="display: flex; flex-wrap: wrap; gap: 20px;"><a href="/platform/">Octryx AI</a><a href="/family/">Family</a><a href="/story/">Story</a><a href="/research/">Research</a><a href="/benchmark/">Benchmark</a><a href="/roadmap/">Roadmap</a><a href="/community/">Community</a><a href="/docs/">Docs</a><a href="https://github.com/octryx-ai">GitHub</a></span>
 </div>
 </footer>
